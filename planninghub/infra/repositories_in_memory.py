@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from operator import attrgetter
 
 from planninghub.domain.entities import Membership, Reservation
 
@@ -55,7 +56,7 @@ class InMemoryReservationRepository:
             for reservation in self._items.values()
             if reservation.organization_id == organization_id
         ]
-        return sorted(items, key=lambda reservation: reservation.id)
+        return sorted(items, key=attrgetter("id"))
 
     def list_by_resource(
         self, organization_id: str, resource_id: str
@@ -66,7 +67,7 @@ class InMemoryReservationRepository:
             if reservation.organization_id == organization_id
             and reservation.resource_id == resource_id
         ]
-        return sorted(items, key=lambda reservation: reservation.id)
+        return sorted(items, key=attrgetter("id"))
 
     def list_overlapping(
         self,
