@@ -11,8 +11,9 @@ dependencies = ["fastapi>=0.110"]
 [project.optional-dependencies]
 dev = ["pytest>=7.4.0", "ruff>=0.3.0", "httpx>=0.24"]
 
-[tool.setuptools]
-packages = []
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["planninghub*"]
 
 [tool.ruff]
 line-length = 100
