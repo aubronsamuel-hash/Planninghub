@@ -1,0 +1,1 @@
+"""PlanningHub application package skeleton."""
