@@ -31,6 +31,5 @@
 - Build: python -m compileall .
 - Test: python -m pytest
 - Lint: ruff check .
-NEXT STEP: Define install/CI dependency contract (pip install -e ".[dev]") and remove FastAPI test skip if desired.
+NEXT STEP: Add minimal canonical roadmap under docs/roadmap/ and minimal specs under docs/specs/ to remove BLOCKERs.
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
-
