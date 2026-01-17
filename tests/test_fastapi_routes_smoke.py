@@ -1,7 +1,9 @@
 import pytest
 
-fastapi = pytest.importorskip("fastapi")
+pytest.importorskip("fastapi")
+
 from fastapi.testclient import TestClient
+
 from planninghub.adapters.fastapi_app.app import app
 
 client = TestClient(app)
