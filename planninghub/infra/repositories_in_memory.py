@@ -56,7 +56,8 @@ class InMemoryReservationRepository:
             for reservation in self._items.values()
             if reservation.organization_id == organization_id
         ]
-        return sorted(items, key=attrgetter("id"))
+        items = sorted(items, key=attrgetter("id"))
+        return items
 
     def list_by_resource(
         self, organization_id: str, resource_id: str
@@ -67,7 +68,8 @@ class InMemoryReservationRepository:
             if reservation.organization_id == organization_id
             and reservation.resource_id == resource_id
         ]
-        return sorted(items, key=attrgetter("id"))
+        items = sorted(items, key=attrgetter("id"))
+        return items
 
     def list_overlapping(
         self,
