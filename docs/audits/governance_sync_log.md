@@ -6,6 +6,7 @@ Date: 2026-01-17
 - Removed docs/agents/README.md from deprecated listings to keep the entry documentation active.
 - Removed duplicate DO NOT DO content in implementation readiness to keep a single final gate.
 - Decision 001 created to formalize the canonical vision document and unblock readiness.
+- Added baseline Python tooling (pyproject.toml, ruff, pytest) and CI workflow.
 
 ## Rationale
 These updates align governance with the vision doc and enforce a real readiness gate before implementation work.

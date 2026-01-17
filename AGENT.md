@@ -76,9 +76,9 @@ AGENT CHANGELOG
 - 2026-01-17: Updated authority order, clarified canonical vision note, and normalized the agent registry to the current agent files.
 
 ## 8. Quick Start
-- Build: No build command exists yet (BLOCKER: no build tooling files found).
-- Test: No test command exists yet (BLOCKER: no test tooling files found).
-- Lint: No lint command exists yet (BLOCKER: no lint tooling files found).
+- Build: python -m compileall .
+- Test: python -m pytest
+- Lint: ruff check .
 
 ## 9. Decision Required Template
 Use this template for docs/decisions entries:

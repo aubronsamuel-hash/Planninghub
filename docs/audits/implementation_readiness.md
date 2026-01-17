@@ -26,12 +26,12 @@
 ## Gaps
 - BLOCKER: No canonical roadmap existed under docs/roadmap/ prior to this update.
 - BLOCKER: No minimal specs existed under docs/specs/ prior to this update.
-- BLOCKER: No build/test/lint tooling exists yet (no package manager or build tooling files detected).
+- Baseline tooling now present (pyproject.toml, ruff, pytest, CI workflow).
 
 ## Baseline validation commands
-- Build: No build command exists yet (BLOCKER: no build tooling files found).
-- Test: No test command exists yet (BLOCKER: no test tooling files found).
-- Lint: No lint command exists yet (BLOCKER: no lint tooling files found).
+- Build: python -m compileall .
+- Test: python -m pytest
+- Lint: ruff check .
 
-NEXT STEP: Choose execution bootstrap strategy: define minimal tooling stack (python or node) OR freeze specs-first foundation.
-DO NOT DO: Implement application code, workflows, UI, APIs, or integrations before the next step is explicitly approved.
+NEXT STEP: Create empty application skeleton (no business logic) aligned to existing specs (core domain + reservation primitives).
+DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
