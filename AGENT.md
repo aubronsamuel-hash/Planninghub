@@ -14,12 +14,13 @@ This orchestrator exists to coordinate multiple specialized agents, provide a si
 ## 2. Authority and Source of Truth
 Precedence order (highest to lowest):
 1) Root AGENT.md (this file)
-2) docs/roadmap/*
-3) docs/specs/*
-4) docs/api/*
-5) docs/ux/*
-6) docs/ops/*
-7) Code and other docs
+2) docs/Planning_hub_architecture_vision_produit_v_1.md
+3) docs/roadmap/*
+4) docs/specs/*
+5) docs/api/*
+6) docs/ux/*
+7) docs/ops/*
+8) Code and other docs
 
 Conflict handling:
 - If two sources conflict, stop and create or update a decision in docs/decisions.
@@ -33,15 +34,13 @@ Gate D: Minimal execution
 Gate E: Validation + docs update
 
 ## 4. Sub-Agents Registry (Updatable)
-| Agent ID        | Scope (folders allowed) | Responsibilities | Inputs | Outputs | Validation | Stop conditions |
-|----------------|--------------------------|------------------|--------|---------|------------|-----------------|
-| AGENT.backend  | code backend folders TBD | Backend changes and services | specs, roadmap, audits | code, tests, notes | backend tests if present | Gate failure or unclear spec |
-| AGENT.frontend | code frontend folders TBD| UI/UX implementation | specs, ux docs | code, screenshots | frontend tests if present | Gate failure or unclear spec |
-| AGENT.docs     | docs/*                   | Documentation updates | audits, decisions | docs updates | doc lint if present | Conflicting authority |
-| AGENT.devops   | ops, ci, infra folders TBD| CI/CD, infra, scripts | ops docs | config changes | pipeline checks | Unsafe change |
-| AGENT.qa       | tests folders TBD        | Test plans and validation | specs, audits | test updates | test runs | Missing test env |
-| AGENT.data     | data folders TBD         | Data pipelines and models | specs, audits | data changes | data validation | Missing data sources |
-| AGENT.security | security folders TBD     | Security reviews and fixes | audits, decisions | fixes, notes | security checks | Unresolved risk |
+| Agent ID | Scope (folders allowed) | Responsibilities | Inputs | Outputs | Validation | Stop conditions |
+| --- | --- | --- | --- | --- | --- | --- |
+| AGENT.docs_governance | docs/** | Governance docs, audits, indexes | vision doc, audits, roadmap | updated docs, logs | doc lint if present | Conflicting authority or missing index |
+| AGENT.backend | planninghub/** | Backend changes and services | specs, roadmap, audits | code, tests, notes | backend tests if present | Gate failure or unclear spec |
+| AGENT.frontend | ui or web folders TBD | UI and UX implementation | specs, ux docs | code, screenshots | frontend tests if present | Gate failure or unclear spec |
+| AGENT.data_model | data or models folders TBD | Data models and schemas | specs, audits | model updates | data validation | Missing data sources |
+| AGENT.ops_ci | ops, ci, infra folders TBD | CI/CD, infra, scripts | ops docs | config changes | pipeline checks | Unsafe change |
 
 ## 5. Agent Invocation Protocol
 REQUEST
@@ -63,6 +62,7 @@ RESPONSE
 - Docs change -> index updated (if an index exists)
 - Code change -> tests + validation recorded
 - Any uncertainty -> audit note or decision entry
+- Audits live in docs/audits/
 
 ## 7. Update Policy (Agent Evolution)
 - Add a new agent by updating the registry table and documenting scope and validation.
@@ -70,7 +70,7 @@ RESPONSE
 - Log all changes to this section in the AGENT CHANGELOG.
 
 AGENT CHANGELOG
-- 2025-09-27: Initial orchestrator created.
+- 2025-09-27: Updated authority order, added governance agents, clarified audit location.
 
 ## 8. Quick Start
 - TODO: Add build command
