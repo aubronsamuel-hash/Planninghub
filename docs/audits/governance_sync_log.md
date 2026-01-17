@@ -7,6 +7,7 @@ Date: 2026-01-17
 - Removed duplicate DO NOT DO content in implementation readiness to keep a single final gate.
 - Decision 001 created to formalize the canonical vision document and unblock readiness.
 - Added baseline Python tooling (pyproject.toml, ruff, pytest) and CI workflow.
+- Added/updated glossary, enums/states, and invariants specs to unblock entity implementation.
 
 ## Rationale
 These updates align governance with the vision doc and enforce a real readiness gate before implementation work.
