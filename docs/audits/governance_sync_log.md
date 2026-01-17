@@ -5,6 +5,7 @@ Date: 2026-01-17
 ## Summary of changes
 - Removed docs/agents/README.md from deprecated listings to keep the entry documentation active.
 - Removed duplicate DO NOT DO content in implementation readiness to keep a single final gate.
+- Decision 001 created to formalize the canonical vision document and unblock readiness.
 
 ## Rationale
 These updates align governance with the vision doc and enforce a real readiness gate before implementation work.
