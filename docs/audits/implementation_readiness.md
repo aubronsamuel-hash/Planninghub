@@ -33,3 +33,4 @@
 - Lint: ruff check .
 NEXT STEP: Define install/CI dependency contract (pip install -e ".[dev]") and remove FastAPI test skip if desired.
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
+
