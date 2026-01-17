@@ -32,5 +32,5 @@
 - Test: python -m pytest
 - Lint: ruff check .
 
-NEXT STEP: Create empty application skeleton (no business logic) aligned to existing specs (core domain + reservation primitives).
+NEXT STEP: Define initial domain contracts (entities and invariants) as specs updates OR implement first domain entities with tests.
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
