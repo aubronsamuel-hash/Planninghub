@@ -26,7 +26,6 @@
 ## Gaps
 - BLOCKER: No canonical roadmap existed under docs/roadmap/ prior to this update.
 - BLOCKER: No minimal specs existed under docs/specs/ prior to this update.
-- Baseline tooling now present (pyproject.toml, ruff, pytest, CI workflow).
 
 ## Baseline validation commands
 - Build: python -m compileall .
