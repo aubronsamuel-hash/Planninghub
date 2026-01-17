@@ -32,5 +32,5 @@
 - Test: python -m pytest
 - Lint: ruff check .
 
-NEXT STEP: Introduce domain-level invariants and contracts for conflict resolution outcomes (still no API).
+NEXT STEP: Introduce a minimal end-to-end domain use case (evaluate reservation -> conflict -> proposal -> outcome).
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
