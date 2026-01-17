@@ -22,4 +22,4 @@ target-version = "py311"
 select = ["E", "F", "I"]
 
 [tool.pytest.ini_options]
-addopts = "-q --disable-warnings --maxfail=1 --allow-no-tests"
+addopts = "-q --disable-warnings --maxfail=1"
