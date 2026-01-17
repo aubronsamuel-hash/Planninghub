@@ -20,5 +20,7 @@ jobs:
           python -m pip install -e ".[dev]"
       - name: Lint
         run: ruff check .
+      - name: Sanity import
+        run: python -c "import fastapi; print(fastapi.__version__)"
       - name: Test
         run: python -m pytest
