@@ -26,7 +26,7 @@
 ## Gaps
 - BLOCKER: No canonical roadmap existed under docs/roadmap/ prior to this update.
 - BLOCKER: No minimal specs existed under docs/specs/ prior to this update.
-- BLOCKER: No baseline build/test/lint commands are defined in README.md or AGENT.md Quick Start.
+- BLOCKER: No build/test/lint tooling exists yet (no package manager or build tooling files detected).
 - SHOULD: Confirm canonical location of the vision doc path referenced in the prompt.
 
 ## Baseline validation commands
