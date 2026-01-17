@@ -3,9 +3,8 @@
 Date: 2026-01-17
 
 ## Summary of changes
-- Clarified AGENT.md authority order and canonical vision note.
-- Normalized the AGENT.md agent registry to the current docs/agents files.
-- Hardened implementation readiness with baseline validation commands and explicit DECISION REQUIRED guidance.
+- Removed docs/agents/README.md from deprecated listings to keep the entry documentation active.
+- Removed duplicate DO NOT DO content in implementation readiness to keep a single final gate.
 
 ## Rationale
 These updates align governance with the vision doc and enforce a real readiness gate before implementation work.

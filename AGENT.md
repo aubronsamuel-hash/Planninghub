@@ -43,7 +43,7 @@ Gate E: Validation + docs update
 | AGENT.ops_ci | docs/agents/agent_ops_ci.md | ops, ci, infra folders | CI/CD, infra, scripts | ops docs | config changes | pipeline checks | Unsafe change |
 
 ### Legacy / deprecated
-Deprecated legacy registry files (do not use): docs/agents/AGENT.backend.md, docs/agents/AGENT.frontend.md, docs/agents/AGENT.docs.md, docs/agents/AGENT.devops.md, docs/agents/AGENT.qa.md, docs/agents/AGENT.data.md, docs/agents/AGENT.security.md, docs/agents/README.md.
+Deprecated legacy registry files (do not use): docs/agents/AGENT.backend.md, docs/agents/AGENT.frontend.md, docs/agents/AGENT.docs.md, docs/agents/AGENT.devops.md, docs/agents/AGENT.qa.md, docs/agents/AGENT.data.md, docs/agents/AGENT.security.md.
 
 ## 5. Agent Invocation Protocol
 REQUEST
