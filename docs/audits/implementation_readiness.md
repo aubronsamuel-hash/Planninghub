@@ -32,5 +32,5 @@
 - Test: python -m pytest
 - Lint: ruff check .
 
-NEXT STEP: Introduce service-level contracts for conflict resolution strategies (still no API).
+NEXT STEP: Introduce a minimal orchestration service that runs detection + resolution proposal end-to-end for an incoming reservation (pure Python, no API).
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
