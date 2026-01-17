@@ -31,5 +31,5 @@
 - Build: python -m compileall .
 - Test: python -m pytest
 - Lint: ruff check .
-NEXT STEP: Add HTTP adapter skeleton (FastAPI later) that maps request/response DTOs onto application ports (still no persistence).
+NEXT STEP: Add minimal FastAPI wiring (routes only) that calls application handlers (still no persistence).
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
