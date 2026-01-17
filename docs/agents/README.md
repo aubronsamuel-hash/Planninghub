@@ -6,7 +6,16 @@ Agents are specialized collaborators that operate within defined scopes and foll
 - Agents are registered and updated in the Sub-Agents Registry section of AGENT.md.
 - Any agent change must be logged in the AGENT CHANGELOG.
 
+Primary index: docs/agents/index.md.
+
 Available agents:
+- [agent_docs_governance](agent_docs_governance.md): Governance docs, audits, and indexes.
+- [agent_backend](agent_backend.md): Backend changes and services.
+- [agent_frontend](agent_frontend.md): UI and UX implementation.
+- [agent_data_model](agent_data_model.md): Data models and schemas.
+- [agent_ops_ci](agent_ops_ci.md): CI, infra, and operational scripts.
+
+Legacy agents:
 - [AGENT.backend](AGENT.backend.md): Backend changes and services.
 - [AGENT.frontend](AGENT.frontend.md): UI and UX implementation.
 - [AGENT.docs](AGENT.docs.md): Documentation updates under docs/**.
