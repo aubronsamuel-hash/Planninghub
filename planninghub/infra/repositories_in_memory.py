@@ -83,4 +83,7 @@ class InMemoryReservationRepository:
             and reservation.starts_at_utc < ends_at_utc
             and reservation.ends_at_utc > starts_at_utc
         ]
-        return sorted(items, key=lambda reservation: reservation.id)
+        return sorted(
+            items,
+            key=lambda reservation: (reservation.starts_at_utc, reservation.id),
+        )

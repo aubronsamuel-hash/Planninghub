@@ -8,29 +8,7 @@ from planninghub.adapters.http.mappers import (
     response_to_response_dto,
 )
 from planninghub.application.handlers import EvaluateIncomingReservationHandler
-
-
-class LocalReservationRepository:
-    def add(self, reservation) -> None:
-        return None
-
-    def get_by_id(self, reservation_id):
-        return None
-
-    def list_by_org(self, organization_id):
-        return []
-
-    def list_by_resource(self, organization_id, resource_id):
-        return []
-
-    def list_overlapping(
-        self,
-        organization_id,
-        resource_id,
-        starts_at_utc,
-        ends_at_utc,
-    ):
-        return []
+from planninghub.infra.repositories_in_memory import InMemoryReservationRepository
 
 router = APIRouter()
 
@@ -41,7 +19,7 @@ def evaluate_reservation(request: dict) -> dict:
         request_dto = EvaluateIncomingReservationRequestDTO(**request)
         command = request_dto_to_command(request_dto)
         handler = EvaluateIncomingReservationHandler(
-            reservation_repo=LocalReservationRepository(),
+            reservation_repo=InMemoryReservationRepository(),
             strategies=[],
         )
         response = handler.handle(command)
