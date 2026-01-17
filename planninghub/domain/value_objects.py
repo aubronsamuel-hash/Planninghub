@@ -1,21 +1,48 @@
-"""Value object placeholders for PlanningHub."""
+"""Value objects for PlanningHub."""
+
+from enum import Enum
 
 
-class Role:
-    """Membership role placeholder."""
+class MembershipRole(str, Enum):
+    """Membership role values."""
+
+    OWNER = "owner"
+    ADMIN = "admin"
+    MEMBER = "member"
 
 
-class ResourceType:
-    """Resource type placeholder."""
+class ResourceType(str, Enum):
+    """Resource type values."""
+
+    HUMAN = "human"
+    ASSET = "asset"
+    SERVICE = "service"
 
 
-class ShiftStatus:
-    """Shift status placeholder."""
+class ShiftStatus(str, Enum):
+    """Shift status values."""
+
+    PROPOSED = "proposed"
+    ACCEPTED = "accepted"
+    CONFIRMED = "confirmed"
+    IN_PROGRESS = "in_progress"
+    COMPLETED = "completed"
+    VALIDATED = "validated"
+    CLOSED = "closed"
 
 
-class ReservationStatus:
-    """Reservation status placeholder."""
+class ReservationStatus(str, Enum):
+    """Reservation status values."""
+
+    DRAFT = "draft"
+    ACTIVE = "active"
+    CANCELLED = "cancelled"
 
 
-class ConflictSeverity:
-    """Conflict severity placeholder."""
+class ConflictSeverity(str, Enum):
+    """Conflict severity values."""
+
+    CRITICAL = "critical"
+    HIGH = "high"
+    MEDIUM = "medium"
+    LOW = "low"
