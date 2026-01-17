@@ -13,14 +13,14 @@ This orchestrator exists to coordinate multiple specialized agents, provide a si
 
 ## 2. Authority and Source of Truth
 Precedence order (highest to lowest):
-1) Root AGENT.md (this file)
-2) docs/Planning_hub_architecture_vision_produit_v_1.md
-3) docs/roadmap/*
-4) docs/specs/*
-5) docs/api/*
-6) docs/ux/*
-7) docs/ops/*
-8) Code and other docs
+1) AGENT.md
+2) docs/Planning_hub_architecture_vision_produit_v_1.md (canonical vision doc)
+3) docs/roadmap/**
+4) docs/specs/**
+5) docs/ux/**, docs/api/**, docs/ops/**
+6) code (planninghub/**)
+
+Note: If a second copy of the vision doc exists elsewhere, it is non-canonical unless explicitly declared.
 
 Conflict handling:
 - If two sources conflict, stop and create or update a decision in docs/decisions.
@@ -34,13 +34,16 @@ Gate D: Minimal execution
 Gate E: Validation + docs update
 
 ## 4. Sub-Agents Registry (Updatable)
-| Agent ID | Scope (folders allowed) | Responsibilities | Inputs | Outputs | Validation | Stop conditions |
-| --- | --- | --- | --- | --- | --- | --- |
-| AGENT.docs_governance | docs/** | Governance docs, audits, indexes | vision doc, audits, roadmap | updated docs, logs | doc lint if present | Conflicting authority or missing index |
-| AGENT.backend | planninghub/** | Backend changes and services | specs, roadmap, audits | code, tests, notes | backend tests if present | Gate failure or unclear spec |
-| AGENT.frontend | ui or web folders TBD | UI and UX implementation | specs, ux docs | code, screenshots | frontend tests if present | Gate failure or unclear spec |
-| AGENT.data_model | data or models folders TBD | Data models and schemas | specs, audits | model updates | data validation | Missing data sources |
-| AGENT.ops_ci | ops, ci, infra folders TBD | CI/CD, infra, scripts | ops docs | config changes | pipeline checks | Unsafe change |
+| Agent ID | Agent file | Scope (folders allowed) | Responsibilities | Inputs | Outputs | Validation | Stop conditions |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| AGENT.docs_governance | docs/agents/agent_docs_governance.md | docs/** | Governance docs, audits, indexes | vision doc, audits, roadmap | updated docs, logs | doc lint if present | Conflicting authority or missing index |
+| AGENT.backend | docs/agents/agent_backend.md | planninghub/** | Backend changes and services | specs, roadmap, audits | code, tests, notes | backend tests if present | Gate failure or unclear spec |
+| AGENT.frontend | docs/agents/agent_frontend.md | ui or web folders | UI and UX implementation | specs, ux docs | code, screenshots | frontend tests if present | Gate failure or unclear spec |
+| AGENT.data_model | docs/agents/agent_data_model.md | data or models folders | Data models and schemas | specs, audits | model updates | data validation | Missing data sources |
+| AGENT.ops_ci | docs/agents/agent_ops_ci.md | ops, ci, infra folders | CI/CD, infra, scripts | ops docs | config changes | pipeline checks | Unsafe change |
+
+### Legacy / deprecated
+Deprecated legacy registry files (do not use): docs/agents/AGENT.backend.md, docs/agents/AGENT.frontend.md, docs/agents/AGENT.docs.md, docs/agents/AGENT.devops.md, docs/agents/AGENT.qa.md, docs/agents/AGENT.data.md, docs/agents/AGENT.security.md, docs/agents/README.md.
 
 ## 5. Agent Invocation Protocol
 REQUEST
@@ -70,7 +73,7 @@ RESPONSE
 - Log all changes to this section in the AGENT CHANGELOG.
 
 AGENT CHANGELOG
-- 2025-09-27: Updated authority order, added governance agents, clarified audit location.
+- 2026-01-17: Updated authority order, clarified canonical vision note, and normalized the agent registry to the current agent files.
 
 ## 8. Quick Start
 - TODO: Add build command

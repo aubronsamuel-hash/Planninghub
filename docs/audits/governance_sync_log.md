@@ -1,16 +1,14 @@
 # Governance Sync Log
 
-Date: 2025-09-27
+Date: 2026-01-17
 
 ## Summary of changes
-- Added roadmap and specs structure aligned to the vision doc.
-- Updated implementation readiness audit with mapping, gaps, and next step.
-- Updated root AGENT.md to reflect authority order and agent roster.
-- Added agent governance files under docs/agents/ for scoped execution.
-- Added indexes for docs, roadmap, specs, and agents.
+- Clarified AGENT.md authority order and canonical vision note.
+- Normalized the AGENT.md agent registry to the current docs/agents files.
+- Hardened implementation readiness with baseline validation commands and explicit DECISION REQUIRED guidance.
 
 ## Rationale
-These updates align governance with the vision doc and create minimal execution guidance without implementing code.
+These updates align governance with the vision doc and enforce a real readiness gate before implementation work.
 
 ## References
 - docs/Planning_hub_architecture_vision_produit_v_1.md

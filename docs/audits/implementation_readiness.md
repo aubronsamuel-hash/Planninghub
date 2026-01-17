@@ -26,11 +26,11 @@
 ## Gaps
 - BLOCKER: No canonical roadmap existed under docs/roadmap/ prior to this update.
 - BLOCKER: No minimal specs existed under docs/specs/ prior to this update.
+- BLOCKER: No baseline build/test/lint commands are defined in README.md or AGENT.md Quick Start.
 - SHOULD: Confirm canonical location of the vision doc path referenced in the prompt.
-- SHOULD: Define baseline build or test commands in README or AGENT.md.
 
-## Proposed NEXT STEP
-Define initial code stubs for core domain objects and time reservation primitives in planninghub/ based on docs/specs/core_domain_model.md and docs/specs/time_reservation_engine.md.
+## Baseline validation commands
+No baseline commands are defined yet in README.md or AGENT.md Quick Start. This is a BLOCKER.
 
 ## DO NOT DO
 - Do not implement workflows, matching, marketplace, or automation logic.
@@ -38,7 +38,8 @@ Define initial code stubs for core domain objects and time reservation primitive
 - Do not add integrations or external services.
 
 ## DECISION REQUIRED
-- Confirm the canonical vision doc path. Prompt references planninghub/docs/Planning_hub_architecture_vision_produit_v_1.md, but the repo contains docs/Planning_hub_architecture_vision_produit_v_1.md.
+- Confirm the canonical vision doc path. Proposed canonical path: docs/Planning_hub_architecture_vision_produit_v_1.md.
+- If a second copy exists, either remove it or add a sync policy. Do not duplicate without an explicit canonical declaration.
 
-NEXT STEP: Define initial code stubs for core domain objects and time reservation primitives in planninghub/ based on docs/specs/core_domain_model.md and docs/specs/time_reservation_engine.md.
-DO NOT DO: Implement workflows, matching, marketplace, automation, UI, APIs, or integrations before the core stubs are in place.
+NEXT STEP: Define baseline build/test/lint commands in README.md and mirror them in AGENT.md Quick Start.
+DO NOT DO: Implement workflows, matching, marketplace, automation, UI, APIs, or integrations before baseline commands and readiness gates are defined.
