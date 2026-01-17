@@ -32,11 +32,6 @@
 ## Baseline validation commands
 No baseline commands are defined yet in README.md or AGENT.md Quick Start. This is a BLOCKER.
 
-## DO NOT DO
-- Do not implement workflows, matching, marketplace, or automation logic.
-- Do not build UI or API endpoints beyond the core stubs.
-- Do not add integrations or external services.
-
 ## DECISION REQUIRED
 - Confirm the canonical vision doc path. Proposed canonical path: docs/Planning_hub_architecture_vision_produit_v_1.md.
 - If a second copy exists, either remove it or add a sync policy. Do not duplicate without an explicit canonical declaration.
