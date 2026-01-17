@@ -1,6 +1,9 @@
-from fastapi.testclient import TestClient
+import pytest
 
-from planninghub.adapters.fastapi_app.app import app
+fastapi = pytest.importorskip("fastapi")
+from fastapi.testclient import TestClient  # noqa: E402
+
+from planninghub.adapters.fastapi_app.app import app  # noqa: E402
 
 client = TestClient(app)
 
