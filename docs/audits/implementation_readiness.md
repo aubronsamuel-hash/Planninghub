@@ -32,5 +32,5 @@
 - Test: python -m pytest
 - Lint: ruff check .
 
-NEXT STEP: Define initial domain contracts (entities and invariants) as specs updates OR implement first domain entities with tests.
+NEXT STEP: Introduce conflict detection service skeleton wired to ReservationRepository.list_overlapping (no persistence, no API).
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
