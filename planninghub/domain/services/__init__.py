@@ -4,6 +4,10 @@ from planninghub.domain.services.conflict_detection import (
     ConflictCandidate,
     ConflictDetectionService,
 )
+from planninghub.domain.services.conflict_orchestrator import (
+    ConflictOrchestrator,
+    OrchestrationResult,
+)
 from planninghub.domain.services.conflict_resolution import (
     ConflictResolutionStrategy,
     NoopResolutionStrategy,
@@ -13,7 +17,9 @@ from planninghub.domain.services.conflict_resolution import (
 __all__ = [
     "ConflictCandidate",
     "ConflictDetectionService",
+    "ConflictOrchestrator",
     "ConflictResolutionStrategy",
     "NoopResolutionStrategy",
+    "OrchestrationResult",
     "ResolutionProposal",
 ]
