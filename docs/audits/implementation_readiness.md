@@ -32,5 +32,5 @@
 - Test: python -m pytest
 - Lint: ruff check .
 
-NEXT STEP: Introduce conflict detection service skeleton wired to ReservationRepository.list_overlapping (no persistence, no API).
+NEXT STEP: Introduce a minimal application layer wiring (pure Python) that composes in-memory repos + conflict detection service for a demo scenario (no FastAPI yet).
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
