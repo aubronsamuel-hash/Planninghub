@@ -31,6 +31,5 @@
 - Build: python -m compileall .
 - Test: python -m pytest
 - Lint: ruff check .
-
-NEXT STEP: Add minimal package boundaries and public API surface documentation (still no FastAPI).
+NEXT STEP: Introduce a minimal public module map and import policy enforcement (lint rule or simple guard) (still no FastAPI).
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
