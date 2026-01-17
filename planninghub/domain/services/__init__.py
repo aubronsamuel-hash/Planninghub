@@ -8,6 +8,11 @@ from planninghub.domain.services.conflict_orchestrator import (
     ConflictOrchestrator,
     OrchestrationResult,
 )
+from planninghub.domain.services.conflict_outcomes import (
+    ResolutionOutcome,
+    ResolutionOutcomeType,
+    resolve_outcome,
+)
 from planninghub.domain.services.conflict_resolution import (
     ConflictResolutionStrategy,
     NoopResolutionStrategy,
@@ -21,5 +26,8 @@ __all__ = [
     "ConflictResolutionStrategy",
     "NoopResolutionStrategy",
     "OrchestrationResult",
+    "ResolutionOutcome",
+    "ResolutionOutcomeType",
     "ResolutionProposal",
+    "resolve_outcome",
 ]
