@@ -32,5 +32,5 @@
 - Test: python -m pytest
 - Lint: ruff check .
 
-NEXT STEP: Introduce a minimal application layer wiring (pure Python) that composes in-memory repos + conflict detection service for a demo scenario (no FastAPI yet).
+NEXT STEP: Introduce service-level contracts for conflict resolution strategies (still no API).
 DO NOT DO: Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
