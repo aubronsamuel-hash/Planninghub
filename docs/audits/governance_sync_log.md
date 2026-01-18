@@ -20,3 +20,18 @@ These updates align governance with the vision doc and enforce a real readiness 
 - docs/specs/time_reservation_engine.md
 - docs/specs/iam_minimal.md
 - docs/specs/conflict_engine_minimal.md
+
+---
+
+Date: 2026-01-18
+
+## Summary of changes
+- Tightened persistence adapter contract with explicit write atomicity, concurrency,
+  and error taxonomy requirements.
+
+## Rationale
+Clarifies implementation-ready guarantees for atomicity, concurrency, and error
+handling without selecting a storage technology.
+
+## References
+- docs/specs/persistence_real_adapter_contract.md
