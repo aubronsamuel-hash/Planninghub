@@ -41,19 +41,37 @@ DO NOT DO:
 - Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
 
 ## Phase status
-- Phase 1: DONE. Evidence: docs/specs/iam_minimal.md, docs/specs/time_reservation_engine.md,
-  docs/specs/conflict_engine_minimal.md, docs/specs/18_invariants_minimal.md.
-- Phase 2: DONE. Evidence: docs/specs/ports/identity_ports.md,
-  docs/specs/ports/time_reservation_ports.md, docs/specs/ports/conflict_ports.md,
-  docs/specs/ports_and_adapters_contracts.md.
-- Phase 3: DONE. Implemented adapters and tests:
-  - Adapters: planninghub/adapters/persistence/stub.py, planninghub/adapters/persistence/in_memory.py,
-    planninghub/adapters/http/dtos.py, planninghub/adapters/http/mappers.py.
-  - Tests: tests/test_phase3_ports_adapters_skeleton.py,
-    tests/test_persistence_adapter_in_memory.py,
-    tests/test_http_adapter_mappers.py.
+- Phase 1: DONE. Evidence:
+  - [EVIDENCE:docs/specs/iam_minimal.md:L1-L59]
+  - [EVIDENCE:docs/specs/time_reservation_engine.md:L1-L54]
+  - [EVIDENCE:docs/specs/conflict_engine_minimal.md:L1-L47]
+  - [EVIDENCE:docs/specs/18_invariants_minimal.md:L1-L28]
+- Phase 2: DONE. Evidence (ports and adapters contracts):
+  - [EVIDENCE:docs/specs/ports_and_adapters_contracts.md:L1-L200]
+  - [EVIDENCE:docs/specs/ports_and_adapters_contracts.md:L200-L400]
+- Phase 3: DONE. Implemented ports/adapters/DTOs/tests:
+  - Application ports and handlers: [EVIDENCE:planninghub/application/ports/identity.py:L21-L43] [EVIDENCE:planninghub/application/handlers/identity.py:L30-L83]
+  - Persistence and HTTP adapters: [EVIDENCE:planninghub/adapters/persistence/in_memory.py:L49-L252] [EVIDENCE:planninghub/adapters/http/mappers.py:L19-L49]
+  - Tests: [EVIDENCE:tests/test_phase3_ports_adapters_skeleton.py:L1-L248] [EVIDENCE:tests/test_http_adapter_mappers.py:L1-L75]
 - Phase 4: DONE. In-memory adapter guarantees:
   - Deterministic ID generation with incrementing counters per prefix.
   - Validation for organization_id, role, reservation status, conflict severity, and intervals.
   - Conflict detection emits \"high\" severity with reason \"overlap:<other-id>\".
-  Evidence: planninghub/adapters/persistence/in_memory.py.
+  Evidence:
+  - [EVIDENCE:planninghub/adapters/persistence/in_memory.py:L49-L287]
+  - [EVIDENCE:tests/test_persistence_adapter_in_memory.py:L1-L159]
+
+## Evidence index
+- [EVIDENCE:docs/specs/iam_minimal.md:L1-L59]
+- [EVIDENCE:docs/specs/time_reservation_engine.md:L1-L54]
+- [EVIDENCE:docs/specs/conflict_engine_minimal.md:L1-L47]
+- [EVIDENCE:docs/specs/ports_and_adapters_contracts.md:L1-L400]
+- [EVIDENCE:planninghub/application/ports/identity.py:L21-L43]
+- [EVIDENCE:planninghub/application/ports/time_reservation.py:L19-L36]
+- [EVIDENCE:planninghub/application/ports/conflict.py:L15-L22]
+- [EVIDENCE:planninghub/application/ports/persistence.py:L31-L67]
+- [EVIDENCE:planninghub/adapters/http/mappers.py:L19-L49]
+- [EVIDENCE:planninghub/adapters/persistence/in_memory.py:L49-L287]
+- [EVIDENCE:planninghub/infra/repositories_in_memory.py:L11-L92]
+- [EVIDENCE:tests/test_phase3_ports_adapters_skeleton.py:L1-L248]
+- [EVIDENCE:tests/test_persistence_adapter_in_memory.py:L1-L159]
