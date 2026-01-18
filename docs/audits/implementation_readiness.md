@@ -39,3 +39,7 @@ NEXT STEP:
 
 DO NOT DO:
 - Implement workflows, matching, marketplace, UI, APIs, or integrations before skeleton + baseline tests are green.
+
+Phase 3 status:
+- Phase 3 started: Ports and adapters skeleton implementation initiated.
+- Phase 3 done: Ports and adapters skeleton implemented (DTOs, ports, handlers, persistence stub, tests).
