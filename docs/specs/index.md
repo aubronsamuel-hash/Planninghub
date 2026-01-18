@@ -15,5 +15,6 @@
 - [ports/execution_ports](ports/execution_ports.md)
 - [ports/finance_ports](ports/finance_ports.md)
 - [adapters/persistence_adapters](adapters/persistence_adapters.md)
+- [persistence_real_adapter_contract](persistence_real_adapter_contract.md)
 - [adapters/notification_adapters](adapters/notification_adapters.md)
 - [adapters/external_system_adapters](adapters/external_system_adapters.md)
