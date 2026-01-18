@@ -1,7 +1,7 @@
 # Spec: Conflict engine minimal
 
 ## Purpose
-Define minimal conflict detection contracts for overlapping reservations.
+Define minimal conflict detection and severity classification contracts.
 
 ## Scope
 - Conflict detection within a single organization.
