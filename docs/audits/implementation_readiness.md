@@ -60,6 +60,8 @@ DO NOT DO:
   Evidence:
   - [EVIDENCE:planninghub/adapters/persistence/in_memory.py:L49-L287]
   - [EVIDENCE:tests/test_persistence_adapter_in_memory.py:L1-L159]
+- Phase 5: STARTED (spec only). Real persistence adapter contract:
+  - [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L1-L68]
 
 ## Evidence index
 - [EVIDENCE:docs/specs/iam_minimal.md:L1-L59]
@@ -75,3 +77,4 @@ DO NOT DO:
 - [EVIDENCE:planninghub/infra/repositories_in_memory.py:L11-L92]
 - [EVIDENCE:tests/test_phase3_ports_adapters_skeleton.py:L1-L248]
 - [EVIDENCE:tests/test_persistence_adapter_in_memory.py:L1-L159]
+- [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L1-L68]
