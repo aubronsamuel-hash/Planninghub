@@ -8,6 +8,7 @@
 - [12_enums_and_states](12_enums_and_states.md)
 - [18_invariants_minimal](18_invariants_minimal.md)
 - [architecture/hexagonal_architecture_contract](architecture/hexagonal_architecture_contract.md)
+- [ports_and_adapters_contracts](ports_and_adapters_contracts.md)
 - [ports/identity_ports](ports/identity_ports.md)
 - [ports/time_reservation_ports](ports/time_reservation_ports.md)
 - [ports/conflict_ports](ports/conflict_ports.md)
