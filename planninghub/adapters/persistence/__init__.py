@@ -1,5 +1,6 @@
 """Persistence adapters."""
 
+from planninghub.adapters.persistence.in_memory import InMemoryPersistenceAdapter
 from planninghub.adapters.persistence.stub import StubPersistenceAdapter
 
-__all__ = ["StubPersistenceAdapter"]
+__all__ = ["InMemoryPersistenceAdapter", "StubPersistenceAdapter"]

@@ -43,3 +43,7 @@ DO NOT DO:
 Phase 3 status:
 - Phase 3 started: Ports and adapters skeleton implementation initiated.
 - Phase 3 done: Ports and adapters skeleton implemented (DTOs, ports, handlers, persistence stub, tests).
+
+Phase 4 status:
+- Phase 4 started: In-memory persistence adapter implementation initiated.
+- Phase 4 done: In-memory persistence adapter implemented with deterministic IDs and tests.
