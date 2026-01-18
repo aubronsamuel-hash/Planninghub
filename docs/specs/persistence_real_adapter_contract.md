@@ -24,6 +24,13 @@
 - List and detect operations MAY be eventually consistent with concurrent writes, but
   MUST NOT return partial or internally inconsistent records.
 
+### Write operations (atomic per method call)
+- IdentityPersistencePort: CreateUser, DeactivateUser, CreateOrganization,
+  AddMembership.
+- ReservationPersistencePort: CreateReservation, UpdateReservation.
+- ConflictPersistencePort: no write operations are defined in the current ports.
+- Atomicity is scoped to each individual method call and MUST NOT span multiple calls.
+
 ## ID strategy (contractual)
 - IDs MUST be stable once created and MUST NOT change on updates.
 - IDs MUST be unique within their entity namespace across all organizations.
@@ -41,19 +48,20 @@
 ## Concurrency expectations
 - The adapter MUST tolerate concurrent requests across all covered ports without data
   corruption or broken invariants.
-- Concurrent writes to the same entity MAY result in a domain error or a last-write
-  outcome, but MUST be consistent with the port contract and invariants.
+- The adapter MUST NOT allow silent lost updates.
+- Concurrent writes to the same entity MUST either yield a deterministic last-write
+  outcome with a well-defined final state or be rejected with a domain error.
 - The adapter is not required to provide global serializability or distributed locking
   across unrelated entities.
 
 ## Error contract
-- Domain errors: violations of existing invariants or invalid inputs MUST surface as
-  domain errors to the application.
-- Infrastructure errors: storage unavailability, timeouts, or IO failures MUST surface
-  as infrastructure errors to the application.
-- The adapter MUST distinguish domain errors from infrastructure errors.
-- The adapter MUST NOT leak vendor-specific error details or internal storage metadata
-  to the application.
+- Domain error: invalid inputs or invariant violations MUST surface as a domain error.
+- Not found error: requests for missing entities MUST surface as a not found error.
+- Infrastructure error: storage unavailability, timeouts, or IO failures MUST surface
+  as an infrastructure error.
+- The adapter MUST distinguish these error categories.
+- Vendor-specific error details or internal storage metadata MUST NOT leak to the
+  application.
 
 ## Determinism
 - Given identical inputs and identical persisted state, read operations MUST return the
