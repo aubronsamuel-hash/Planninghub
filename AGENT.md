@@ -26,6 +26,37 @@ Conflict handling:
 - If two sources conflict, stop and create or update a decision in docs/decisions.
 - If ambiguity blocks progress, record it using the Decision Required template.
 
+## 2.1 Documentation Domains (Paths Only)
+- docs/vision/ : Vision and product intent docs.
+- docs/architecture/ : Architecture overview and structural guidance.
+- docs/architecture/decisions/ : ADRs for locked architecture choices.
+- docs/tests/ : Test governance and testing docs.
+- docs/traceability/ : Traceability matrices and links between artifacts.
+- docs/security/ : Security documentation and trust boundary notes.
+- docs/glossary/ : Domain terms glossary.
+- docs/language/ : Ubiquitous language rules.
+- docs/releases/ : Release notes and release tracking.
+
+## 2.2 Test Governance Awareness
+- Tests are part of architecture enforcement. (docs/tests/testing_philosophy.md)
+- Tests protect invariants and contracts. (docs/tests/testing_philosophy.md)
+- Tests MUST NOT implement business logic. (docs/tests/testing_philosophy.md)
+
+## 2.3 Traceability Enforcement
+- Specs, code, and tests are traceable artifacts. (docs/traceability/spec_to_code_matrix.md, docs/traceability/spec_to_tests_matrix.md)
+
+## 2.4 ADR Awareness
+- ADRs represent locked architectural decisions. (docs/architecture/decisions/)
+- Codex MUST respect ACCEPTED ADRs. (docs/architecture/decisions/)
+
+## 2.5 Language Enforcement
+- Glossary terms are authoritative. (docs/glossary/domain_terms.md)
+- Codex MUST NOT introduce synonyms. (docs/glossary/domain_terms.md, docs/language/ubiquitous_language_rules.md)
+
+## 2.6 Security and Trust Boundaries
+- Security and trust boundaries are documented. (docs/security/trust_boundaries.md)
+- Codex MUST NOT assume protections beyond what is documented. (docs/security/trust_boundaries.md)
+
 ## 3. Standard Gated Workflow
 Gate A: Baseline green (guards/tests if present)
 Gate B: Implementation readiness audit (docs/audits/implementation_readiness.md)
