@@ -15,7 +15,7 @@ from planninghub.application.ports.persistence import (
 from planninghub.infra.config import AppConfig
 
 
-class PersistencePorts(
+class PersistencePort(
     IdentityPersistencePort,
     ReservationPersistencePort,
     ConflictPersistencePort,
@@ -28,19 +28,23 @@ class PersistencePorts(
 class Application:
     """Container for application dependencies."""
 
-    persistence: PersistencePorts
+    persistence: PersistencePort
+
+
+def build_persistence_adapter(config: AppConfig) -> PersistencePort:
+    """Build the configured persistence adapter."""
+
+    if config.persistence_backend == "memory":
+        return InMemoryPersistenceAdapter()
+    if config.persistence_backend == "sqlite":
+        if not config.sqlite_db_path:
+            raise ValueError("sqlite_db_path is required for sqlite backend")
+        return SQLitePersistenceAdapter(db_path=config.sqlite_db_path)
+
+    raise ValueError(f"Unsupported persistence backend: {config.persistence_backend}")
 
 
 def build_application(config: AppConfig) -> Application:
     """Build the application with the configured persistence adapter."""
 
-    if config.persistence_backend == "memory":
-        adapter = InMemoryPersistenceAdapter()
-    elif config.persistence_backend == "sqlite":
-        adapter = SQLitePersistenceAdapter(db_path=config.sqlite_db_path or ":memory:")
-    else:
-        raise ValueError(
-            f"Unsupported persistence backend: {config.persistence_backend}"
-        )
-
-    return Application(persistence=adapter)
+    return Application(persistence=build_persistence_adapter(config))
