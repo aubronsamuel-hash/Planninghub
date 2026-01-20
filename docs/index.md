@@ -8,6 +8,7 @@
 - [Specs](specs/index.md)
 - [Architecture](architecture/README.md)
 - [Language](language/index.md)
+- [UX](ux/index.md)
 - [Traceability](traceability/index.md)
 - [Releases](releases/index.md)
 - [Audits](audits/implementation_readiness.md)
