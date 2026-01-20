@@ -270,9 +270,8 @@ class SQLitePersistenceAdapter(
             reservation = self._get_required_reservation(request.reservation_id)
             if reservation.organization_id != request.organization_id:
                 raise ValueError("Reservation is not scoped to the organization.")
-            if reservation.resource_id is None:
-                conflicts: list[ConflictDTO] = []
-            else:
+            conflicts: list[ConflictDTO] = []
+            if reservation.resource_id is not None:
                 rows = self._connection.execute(
                     """
                     SELECT id, organization_id, resource_id, starts_at_utc, ends_at_utc,
@@ -287,7 +286,6 @@ class SQLitePersistenceAdapter(
                         reservation.id,
                     ),
                 ).fetchall()
-                conflicts = []
                 for row in rows:
                     other = self._row_to_reservation(row)
                     if not self._overlaps(
