@@ -32,6 +32,87 @@ Evidence:
 | MembershipRepository | planninghub/domain/repositories.py | Domain repository port | Membership | Membership | None defined | [EVIDENCE:planninghub/domain/repositories.py:L11-L25] [EVIDENCE:planninghub/domain/entities.py:L42-L58] |
 | ReservationRepository | planninghub/domain/repositories.py | ConflictDetectionService, EvaluateIncomingReservationHandler | Reservation | Reservation | None defined | [EVIDENCE:planninghub/domain/repositories.py:L28-L53] [EVIDENCE:planninghub/domain/services/conflict_detection.py:L23-L52] [EVIDENCE:planninghub/application/handlers/evaluate_incoming_reservation.py:L18-L31] |
 
+## 2.1 Inventory sources (Step 1)
+- CreateUser, DeactivateUser, CreateOrganization, AddMembership, ListMemberships:
+  docs/specs/iam_minimal.md; docs/specs/ports/identity_ports.md.
+- CreateReservation, UpdateReservation, GetReservation, ListReservations:
+  docs/specs/time_reservation_engine.md; docs/specs/ports/time_reservation_ports.md.
+- DetectConflicts, ListConflicts:
+  docs/specs/conflict_engine_minimal.md; docs/specs/ports/conflict_ports.md.
+- EvaluateIncomingReservationCommand/Response, IdentityPersistencePort,
+  ReservationPersistencePort, ConflictPersistencePort, MembershipRepository,
+  ReservationRepository: docs/specs/ports_and_adapters_contracts.md.
+- IdentityPersistencePort, ReservationPersistencePort, ConflictPersistencePort:
+  docs/specs/persistence_real_adapter_contract.md.
+- Execution ports: docs/specs/ports/execution_ports.md (no port methods defined).
+- Finance ports: docs/specs/ports/finance_ports.md (no port methods defined).
+- planninghub/ports/__init__.py: placeholder only, no port interfaces defined.
+- docs/roadmap/roadmap_v1.md: ports referenced generically without method names.
+
+## 2.2 Spec completeness assessment (Step 2)
+Legend: SPECIFIED, PARTIALLY SPECIFIED, UNSPECIFIED.
+
+| Port method | Inputs | Outputs | Error conditions | Determinism | Status | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| EvaluateIncomingReservation | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/application/ports/evaluate_incoming_reservation.py:L12-L23] [EVIDENCE:planninghub/application/handlers/evaluate_incoming_reservation.py:L18-L42] |
+| CreateUser (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L15-L30] |
+| DeactivateUser (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L31-L43] |
+| CreateOrganization (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L45-L55] |
+| AddMembership (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L57-L71] |
+| ListMemberships (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L73-L83] |
+| CreateReservation (application) | Specified | Specified | Partially specified (error taxonomy in reservation spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/time_reservation_engine.md:L31-L45] [EVIDENCE:docs/specs/ports/time_reservation_ports.md:L15-L33] |
+| UpdateReservation (application) | Specified | Specified | Partially specified (error taxonomy in reservation spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/time_reservation_engine.md:L31-L45] [EVIDENCE:docs/specs/ports/time_reservation_ports.md:L35-L52] |
+| GetReservation (application) | Specified | Specified | Partially specified (error taxonomy in reservation spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/time_reservation_engine.md:L31-L45] [EVIDENCE:docs/specs/ports/time_reservation_ports.md:L54-L66] |
+| ListReservations (application) | Specified | Specified | Partially specified (error taxonomy in reservation spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/time_reservation_engine.md:L31-L45] [EVIDENCE:docs/specs/ports/time_reservation_ports.md:L68-L86] |
+| DetectConflicts (application) | Specified | Specified | Partially specified (error taxonomy in conflict spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/conflict_engine_minimal.md:L28-L40] [EVIDENCE:docs/specs/ports/conflict_ports.md:L12-L29] |
+| ListConflicts (application) | Specified | Specified | Partially specified (error taxonomy in conflict spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/conflict_engine_minimal.md:L28-L40] [EVIDENCE:docs/specs/ports/conflict_ports.md:L31-L45] |
+| IdentityPersistencePort.CreateUser | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L74] |
+| IdentityPersistencePort.DeactivateUser | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L74] |
+| IdentityPersistencePort.CreateOrganization | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L74] |
+| IdentityPersistencePort.AddMembership | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L74] |
+| IdentityPersistencePort.ListMemberships | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L74] |
+| ReservationPersistencePort.CreateReservation | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L90] |
+| ReservationPersistencePort.UpdateReservation | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L90] |
+| ReservationPersistencePort.GetReservation | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L90] |
+| ReservationPersistencePort.ListReservations | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L90] |
+| ConflictPersistencePort.DetectConflicts | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L90] |
+| ConflictPersistencePort.ListConflicts | Specified | Specified | Specified | Specified | SPECIFIED | [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L20-L90] |
+| MembershipRepository.add | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L11-L25] |
+| MembershipRepository.get_by_id | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L11-L25] |
+| MembershipRepository.list_by_org | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L11-L25] |
+| MembershipRepository.find_by_user | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L11-L25] |
+| ReservationRepository.add | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L28-L53] |
+| ReservationRepository.get_by_id | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L28-L53] |
+| ReservationRepository.list_by_org | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L28-L53] |
+| ReservationRepository.list_by_resource | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L28-L53] |
+| ReservationRepository.list_overlapping | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:planninghub/domain/repositories.py:L28-L53] |
+| Execution ports (placeholder) | Unspecified | Unspecified | Unspecified | Unspecified | UNSPECIFIED | [EVIDENCE:docs/specs/ports/execution_ports.md:L1-L23] |
+| Finance ports (placeholder) | Unspecified | Unspecified | Unspecified | Unspecified | UNSPECIFIED | [EVIDENCE:docs/specs/ports/finance_ports.md:L1-L23] |
+
+## 2.3 Clarifications for partially specified items (Step 3)
+Clarifications below are limited to existing specs and invariants. No new behavior is introduced.
+
+- EvaluateIncomingReservation: error behavior and determinism remain unspecified in the
+  current docs; adapter and strategy behavior is intentionally unspecified.
+- Identity application ports (CreateUser, DeactivateUser, CreateOrganization,
+  AddMembership, ListMemberships): inputs and outputs are defined; error taxonomy exists
+  in docs/specs/iam_minimal.md but is not bound to port-level error types in the port
+  contracts. Behavior beyond IAM invariants remains unspecified.
+- Time reservation application ports (CreateReservation, UpdateReservation,
+  GetReservation, ListReservations): inputs and outputs are defined; invariants
+  apply to starts_at_utc < ends_at_utc, UTC storage, organization scoping, and optional
+  resource_id; error taxonomy exists in docs/specs/time_reservation_engine.md but is not
+  bound to port-level error types in the port contracts.
+- Conflict application ports (DetectConflicts, ListConflicts): inputs and outputs are
+  defined; conflicts must reference a reservation in the same organization and use
+  severity values {critical, high, medium, low}; error taxonomy exists in
+  docs/specs/conflict_engine_minimal.md but is not bound to port-level error types in
+  the port contracts.
+- MembershipRepository and ReservationRepository: method signatures exist, but error
+  handling and determinism guarantees are intentionally unspecified in current specs.
+- Execution ports and Finance ports: behavior intentionally unspecified pending future
+  specs; no port methods are defined in current placeholders.
+
 ## 3. Per-port contract sections
 
 ### EvaluateIncomingReservationCommand/Response
@@ -535,3 +616,42 @@ Evidence:
 - [EVIDENCE:planninghub/domain/repositories.py:L11-L53]
 - [EVIDENCE:planninghub/infra/repositories_in_memory.py:L11-L92]
 - [EVIDENCE:planninghub/adapters/persistence/in_memory.py:L49-L287]
+
+## Contract Test Readiness
+
+- The following port methods are ready for contract tests:
+  - IdentityPersistencePort.CreateUser
+  - IdentityPersistencePort.DeactivateUser
+  - IdentityPersistencePort.CreateOrganization
+  - IdentityPersistencePort.AddMembership
+  - IdentityPersistencePort.ListMemberships
+  - ReservationPersistencePort.CreateReservation
+  - ReservationPersistencePort.UpdateReservation
+  - ReservationPersistencePort.GetReservation
+  - ReservationPersistencePort.ListReservations
+  - ConflictPersistencePort.DetectConflicts
+  - ConflictPersistencePort.ListConflicts
+- The following port methods MUST NOT be tested yet:
+  - EvaluateIncomingReservation
+  - CreateUser (application)
+  - DeactivateUser (application)
+  - CreateOrganization (application)
+  - AddMembership (application)
+  - ListMemberships (application)
+  - CreateReservation (application)
+  - UpdateReservation (application)
+  - GetReservation (application)
+  - ListReservations (application)
+  - DetectConflicts (application)
+  - ListConflicts (application)
+  - MembershipRepository.add
+  - MembershipRepository.get_by_id
+  - MembershipRepository.list_by_org
+  - MembershipRepository.find_by_user
+  - ReservationRepository.add
+  - ReservationRepository.get_by_id
+  - ReservationRepository.list_by_org
+  - ReservationRepository.list_by_resource
+  - ReservationRepository.list_overlapping
+  - Execution ports (placeholder)
+  - Finance ports (placeholder)
