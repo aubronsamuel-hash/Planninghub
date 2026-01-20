@@ -20,6 +20,16 @@ from planninghub.application.dtos.identity import (
     OrganizationDTO,
     UserDTO,
 )
+from planninghub.application.dtos.project import (
+    CreateProjectRequest,
+    GetProjectRequest,
+    ProjectDTO,
+)
+from planninghub.application.dtos.resource import (
+    CreateResourceRequest,
+    GetResourceRequest,
+    ResourceDTO,
+)
 from planninghub.application.dtos.time_reservation import (
     CreateReservationRequest,
     GetReservationRequest,
@@ -31,10 +41,13 @@ from planninghub.application.dtos.time_reservation import (
 from planninghub.application.ports.persistence import (
     ConflictPersistencePort,
     IdentityPersistencePort,
+    ProjectPersistencePort,
     ReservationPersistencePort,
+    ResourcePersistencePort,
 )
 
 ROLE_VALUES = {"owner", "admin", "member"}
+RESOURCE_TYPE_VALUES = {"human", "asset", "service"}
 RESERVATION_STATUS_VALUES = {"draft", "active", "cancelled"}
 CONFLICT_SEVERITY_VALUES = {"critical", "high", "medium", "low"}
 
@@ -44,6 +57,8 @@ T = TypeVar("T")
 class InMemoryPersistenceAdapter(
     IdentityPersistencePort,
     ReservationPersistencePort,
+    ProjectPersistencePort,
+    ResourcePersistencePort,
     ConflictPersistencePort,
 ):
     """Deterministic in-memory persistence adapter."""
@@ -52,6 +67,8 @@ class InMemoryPersistenceAdapter(
         self._users: dict[str, UserDTO] = {}
         self._organizations: dict[str, OrganizationDTO] = {}
         self._memberships: dict[str, MembershipDTO] = {}
+        self._projects: dict[str, ProjectDTO] = {}
+        self._resources: dict[str, ResourceDTO] = {}
         self._reservations: dict[str, ReservationDTO] = {}
         self._conflicts: dict[str, ConflictDTO] = {}
         self._membership_index: dict[tuple[str, str], str] = {}
@@ -60,6 +77,8 @@ class InMemoryPersistenceAdapter(
             "user": 0,
             "org": 0,
             "mem": 0,
+            "project": 0,
+            "resource": 0,
             "res": 0,
             "conf": 0,
         }
@@ -115,6 +134,36 @@ class InMemoryPersistenceAdapter(
                 m for m in memberships if m.organization_id == request.organization_id
             ]
         return memberships
+
+    def create_project(self, request: CreateProjectRequest) -> ProjectDTO:
+        self._require_organization_id(request.organization_id, "project")
+        project_id = self._next_id("project")
+        project = ProjectDTO(
+            id=project_id,
+            organization_id=request.organization_id,
+            name=request.name,
+        )
+        self._projects[project_id] = project
+        return project
+
+    def get_project(self, request: GetProjectRequest) -> ProjectDTO:
+        return self._get_required(self._projects, request.project_id, "project")
+
+    def create_resource(self, request: CreateResourceRequest) -> ResourceDTO:
+        self._require_organization_id(request.organization_id, "resource")
+        self._require_resource_type(request.type)
+        resource_id = self._next_id("resource")
+        resource = ResourceDTO(
+            id=resource_id,
+            organization_id=request.organization_id,
+            type=request.type,
+            name=request.name,
+        )
+        self._resources[resource_id] = resource
+        return resource
+
+    def get_resource(self, request: GetResourceRequest) -> ResourceDTO:
+        return self._get_required(self._resources, request.resource_id, "resource")
 
     def create_reservation(self, request: CreateReservationRequest) -> ReservationDTO:
         self._require_organization_id(request.organization_id, "reservation")
@@ -270,6 +319,11 @@ class InMemoryPersistenceAdapter(
     def _require_role(role: str) -> None:
         if role not in ROLE_VALUES:
             raise ValueError("Role must be one of: owner, admin, member.")
+
+    @staticmethod
+    def _require_resource_type(resource_type: str) -> None:
+        if resource_type not in RESOURCE_TYPE_VALUES:
+            raise ValueError("Resource type must be one of: human, asset, service.")
 
     @staticmethod
     def _require_reservation_status(status: str) -> None:

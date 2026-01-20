@@ -19,6 +19,16 @@ from planninghub.application.dtos.identity import (
     OrganizationDTO,
     UserDTO,
 )
+from planninghub.application.dtos.project import (
+    CreateProjectRequest,
+    GetProjectRequest,
+    ProjectDTO,
+)
+from planninghub.application.dtos.resource import (
+    CreateResourceRequest,
+    GetResourceRequest,
+    ResourceDTO,
+)
 from planninghub.application.dtos.time_reservation import (
     CreateReservationRequest,
     GetReservationRequest,
@@ -56,6 +66,22 @@ class ReservationPersistencePort(Protocol):
         ...
 
     def list_reservations(self, request: ListReservationsRequest) -> list[ReservationDTO]:
+        ...
+
+
+class ProjectPersistencePort(Protocol):
+    def create_project(self, request: CreateProjectRequest) -> ProjectDTO:
+        ...
+
+    def get_project(self, request: GetProjectRequest) -> ProjectDTO:
+        ...
+
+
+class ResourcePersistencePort(Protocol):
+    def create_resource(self, request: CreateResourceRequest) -> ResourceDTO:
+        ...
+
+    def get_resource(self, request: GetResourceRequest) -> ResourceDTO:
         ...
 
 

@@ -17,6 +17,16 @@ from planninghub.application.dtos.identity import (
     OrganizationDTO,
     UserDTO,
 )
+from planninghub.application.dtos.project import (
+    CreateProjectRequest,
+    GetProjectRequest,
+    ProjectDTO,
+)
+from planninghub.application.dtos.resource import (
+    CreateResourceRequest,
+    GetResourceRequest,
+    ResourceDTO,
+)
 from planninghub.application.dtos.time_reservation import (
     CreateReservationRequest,
     GetReservationRequest,
@@ -27,13 +37,17 @@ from planninghub.application.dtos.time_reservation import (
 from planninghub.application.ports.persistence import (
     ConflictPersistencePort,
     IdentityPersistencePort,
+    ProjectPersistencePort,
     ReservationPersistencePort,
+    ResourcePersistencePort,
 )
 
 
 class StubPersistenceAdapter(
     IdentityPersistencePort,
     ReservationPersistencePort,
+    ProjectPersistencePort,
+    ResourcePersistencePort,
     ConflictPersistencePort,
 ):
     def create_user(self, request: CreateUserRequest) -> UserDTO:
@@ -49,6 +63,18 @@ class StubPersistenceAdapter(
         raise NotImplementedError
 
     def list_memberships(self, request: ListMembershipsRequest) -> list[MembershipDTO]:
+        raise NotImplementedError
+
+    def create_project(self, request: CreateProjectRequest) -> ProjectDTO:
+        raise NotImplementedError
+
+    def get_project(self, request: GetProjectRequest) -> ProjectDTO:
+        raise NotImplementedError
+
+    def create_resource(self, request: CreateResourceRequest) -> ResourceDTO:
+        raise NotImplementedError
+
+    def get_resource(self, request: GetResourceRequest) -> ResourceDTO:
         raise NotImplementedError
 
     def create_reservation(self, request: CreateReservationRequest) -> ReservationDTO:

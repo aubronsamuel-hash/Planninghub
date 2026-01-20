@@ -14,6 +14,14 @@ from planninghub.application.handlers.identity import (
     DeactivateUserHandler,
     ListMembershipsHandler,
 )
+from planninghub.application.handlers.project import (
+    CreateProjectHandler,
+    GetProjectHandler,
+)
+from planninghub.application.handlers.resource import (
+    CreateResourceHandler,
+    GetResourceHandler,
+)
 from planninghub.application.handlers.time_reservation import (
     CreateReservationHandler,
     GetReservationHandler,
@@ -24,12 +32,16 @@ from planninghub.application.handlers.time_reservation import (
 __all__ = [
     "AddMembershipHandler",
     "CreateOrganizationHandler",
+    "CreateProjectHandler",
     "CreateReservationHandler",
+    "CreateResourceHandler",
     "CreateUserHandler",
     "DeactivateUserHandler",
     "DetectConflictsHandler",
     "EvaluateIncomingReservationHandler",
+    "GetProjectHandler",
     "GetReservationHandler",
+    "GetResourceHandler",
     "ListConflictsHandler",
     "ListMembershipsHandler",
     "ListReservationsHandler",

@@ -12,6 +12,8 @@
 
 ## Covered ports
 - IdentityPersistencePort
+- ProjectPersistencePort
+- ResourcePersistencePort
 - ReservationPersistencePort
 - ConflictPersistencePort
 
