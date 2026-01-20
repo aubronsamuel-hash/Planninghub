@@ -10,4 +10,6 @@ Stack: Python (pyproject.toml + ruff + pytest).
 - Guard: python tools/guards/import_policy_guard.py
 
 ## Docs
-- Package boundaries and public API: docs/specs/package_boundaries_and_public_api.md
+- [Product vision](docs/vision/product_vision.md)
+- [Docs index](docs/index.md)
+- [Package boundaries and public API](docs/specs/package_boundaries_and_public_api.md)

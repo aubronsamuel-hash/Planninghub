@@ -1,5 +1,7 @@
 # Specs Index
 
+- [Roadmap](../roadmap/roadmap_v1.md)
+
 - [00_glossary](00_glossary.md)
 - [core_domain_model](core_domain_model.md)
 - [time_reservation_engine](time_reservation_engine.md)

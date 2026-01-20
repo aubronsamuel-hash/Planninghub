@@ -11,3 +11,6 @@ Decisions exist to resolve ambiguity, capture rationale, and keep the repository
 - Blocking ambiguity in workflow or validation
 
 Use the Decision Required template in AGENT.md when creating new decision files.
+
+## Log
+- [2026-01-20-phase-4-status-conflict](2026-01-20-phase-4-status-conflict.md)

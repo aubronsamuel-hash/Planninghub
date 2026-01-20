@@ -3,6 +3,10 @@
 ## Purpose and authority
 This roadmap is the canonical plan for moving from vision to implementation. It defines phases, dependencies, and stop conditions. It is subordinate to the vision doc and referenced by audits and specs.
 
+## Status references
+- [Current state](../status/current_state.md)
+- [Phase status](../status/phase_status.md)
+
 ## Definitions
 - Skeleton: minimal contracts and boundaries with no implementation.
 - MVP: minimal working flow that proves core value in one context.
