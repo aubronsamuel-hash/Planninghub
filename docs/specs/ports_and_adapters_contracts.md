@@ -18,6 +18,10 @@ Evidence:
 | CreateUserPort | planninghub/application/ports/identity.py | CreateUserHandler | CreateUserRequest | CreateUserResponse | None defined in handler | [EVIDENCE:planninghub/application/ports/identity.py:L21-L23] [EVIDENCE:planninghub/application/handlers/identity.py:L30-L36] [EVIDENCE:planninghub/application/dtos/identity.py:L31-L40] |
 | DeactivateUserPort | planninghub/application/ports/identity.py | DeactivateUserHandler | DeactivateUserRequest | DeactivateUserResponse | None defined in handler | [EVIDENCE:planninghub/application/ports/identity.py:L26-L28] [EVIDENCE:planninghub/application/handlers/identity.py:L39-L45] [EVIDENCE:planninghub/application/dtos/identity.py:L42-L50] |
 | CreateOrganizationPort | planninghub/application/ports/identity.py | CreateOrganizationHandler | CreateOrganizationRequest | CreateOrganizationResponse | None defined in handler | [EVIDENCE:planninghub/application/ports/identity.py:L31-L33] [EVIDENCE:planninghub/application/handlers/identity.py:L48-L54] [EVIDENCE:planninghub/application/dtos/identity.py:L52-L60] |
+| CreateProjectPort | UNSPECIFIED (no port module defined yet) | CreateProjectHandler (planned) | CreateProjectRequest | CreateProjectResponse | UNSPECIFIED | [EVIDENCE:docs/specs/core_domain_model.md:L17-L35] [EVIDENCE:planninghub/domain/entities.py:L55-L67] |
+| GetProjectPort | UNSPECIFIED (no port module defined yet) | GetProjectHandler (planned) | GetProjectRequest | GetProjectResponse | UNSPECIFIED | [EVIDENCE:docs/specs/core_domain_model.md:L17-L35] [EVIDENCE:planninghub/domain/entities.py:L55-L67] |
+| CreateResourcePort | UNSPECIFIED (no port module defined yet) | CreateResourceHandler (planned) | CreateResourceRequest | CreateResourceResponse | UNSPECIFIED | [EVIDENCE:docs/specs/core_domain_model.md:L33-L49] [EVIDENCE:planninghub/domain/entities.py:L94-L104] [EVIDENCE:planninghub/domain/value_objects.py:L12-L23] |
+| GetResourcePort | UNSPECIFIED (no port module defined yet) | GetResourceHandler (planned) | GetResourceRequest | GetResourceResponse | UNSPECIFIED | [EVIDENCE:docs/specs/core_domain_model.md:L33-L49] [EVIDENCE:planninghub/domain/entities.py:L94-L104] [EVIDENCE:planninghub/domain/value_objects.py:L12-L23] |
 | AddMembershipPort | planninghub/application/ports/identity.py | AddMembershipHandler | AddMembershipRequest | AddMembershipResponse | ValueError on empty organization_id or duplicate membership | [EVIDENCE:planninghub/application/ports/identity.py:L36-L38] [EVIDENCE:planninghub/application/handlers/identity.py:L20-L72] [EVIDENCE:planninghub/application/dtos/identity.py:L62-L72] |
 | ListMembershipsPort | planninghub/application/ports/identity.py | ListMembershipsHandler | ListMembershipsRequest | ListMembershipsResponse | ValueError on empty user_id or organization_id when provided | [EVIDENCE:planninghub/application/ports/identity.py:L41-L43] [EVIDENCE:planninghub/application/handlers/identity.py:L25-L83] [EVIDENCE:planninghub/application/dtos/identity.py:L74-L82] |
 | CreateReservationPort | planninghub/application/ports/time_reservation.py | CreateReservationHandler | CreateReservationRequest | CreateReservationResponse | ValueError on empty organization_id or invalid interval | [EVIDENCE:planninghub/application/ports/time_reservation.py:L19-L21] [EVIDENCE:planninghub/application/handlers/time_reservation.py:L18-L36] [EVIDENCE:planninghub/application/dtos/time_reservation.py:L28-L40] |
@@ -35,6 +39,9 @@ Evidence:
 ## 2.1 Inventory sources (Step 1)
 - CreateUser, DeactivateUser, CreateOrganization, AddMembership, ListMemberships:
   docs/specs/iam_minimal.md; docs/specs/ports/identity_ports.md.
+- CreateProject, GetProject, CreateResource, GetResource:
+  docs/specs/core_domain_model.md; docs/specs/18_invariants_minimal.md;
+  planninghub/domain/entities.py; planninghub/domain/value_objects.py.
 - CreateReservation, UpdateReservation, GetReservation, ListReservations:
   docs/specs/time_reservation_engine.md; docs/specs/ports/time_reservation_ports.md.
 - DetectConflicts, ListConflicts:
@@ -58,6 +65,10 @@ Legend: SPECIFIED, PARTIALLY SPECIFIED, UNSPECIFIED.
 | CreateUser (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L15-L30] |
 | DeactivateUser (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L31-L43] |
 | CreateOrganization (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L45-L55] |
+| CreateProject (application) | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/core_domain_model.md:L17-L35] [EVIDENCE:planninghub/domain/entities.py:L55-L67] |
+| GetProject (application) | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/core_domain_model.md:L17-L35] [EVIDENCE:planninghub/domain/entities.py:L55-L67] |
+| CreateResource (application) | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/core_domain_model.md:L33-L49] [EVIDENCE:planninghub/domain/entities.py:L94-L104] [EVIDENCE:planninghub/domain/value_objects.py:L12-L23] |
+| GetResource (application) | Specified | Specified | Unspecified | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/core_domain_model.md:L33-L49] [EVIDENCE:planninghub/domain/entities.py:L94-L104] [EVIDENCE:planninghub/domain/value_objects.py:L12-L23] |
 | AddMembership (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L57-L71] |
 | ListMemberships (application) | Specified | Specified | Partially specified (error taxonomy in IAM spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/iam_minimal.md:L35-L48] [EVIDENCE:docs/specs/ports/identity_ports.md:L73-L83] |
 | CreateReservation (application) | Specified | Specified | Partially specified (error taxonomy in reservation spec) | Unspecified | PARTIALLY SPECIFIED | [EVIDENCE:docs/specs/time_reservation_engine.md:L31-L45] [EVIDENCE:docs/specs/ports/time_reservation_ports.md:L15-L33] |
@@ -98,6 +109,10 @@ Clarifications below are limited to existing specs and invariants. No new behavi
   AddMembership, ListMemberships): inputs and outputs are defined; error taxonomy exists
   in docs/specs/iam_minimal.md but is not bound to port-level error types in the port
   contracts. Behavior beyond IAM invariants remains unspecified.
+- Project and Resource application ports (CreateProject, GetProject, CreateResource,
+  GetResource): inputs and outputs are defined from the core domain model; invariants
+  apply to organization scoping and resource type values. Error behavior, persistence
+  contract, and determinism remain unspecified.
 - Time reservation application ports (CreateReservation, UpdateReservation,
   GetReservation, ListReservations): inputs and outputs are defined; invariants
   apply to starts_at_utc < ends_at_utc, UTC storage, organization scoping, and optional
@@ -217,6 +232,115 @@ Clarifications below are limited to existing specs and invariants. No new behavi
   - [EVIDENCE:planninghub/application/ports/identity.py:L31-L33]
   - [EVIDENCE:planninghub/application/handlers/identity.py:L48-L54]
   - [EVIDENCE:planninghub/application/dtos/identity.py:L17-L60]
+  - [EVIDENCE:docs/specs/architecture/hexagonal_architecture_contract.md:L16-L31]
+
+### CreateProjectPort
+- Name: CreateProjectPort.
+- Responsibility: Create a Project in organization scope and return the stored Project DTO.
+- Input DTO(s):
+  - CreateProjectRequest
+    - organization_id: str
+    - name: str
+- Output DTO(s):
+  - CreateProjectResponse
+    - project: ProjectDTO
+      - id: str
+      - organization_id: str
+      - name: str
+- Error contract (if any): UNSPECIFIED (no port or handler exists yet).
+- Persistence expectations:
+  - Delegates to a persistence port for Project storage. Port surface is UNSPECIFIED.
+  - Uniqueness rules: UNSPECIFIED.
+  - Not-found behavior: UNSPECIFIED.
+- Invariants (existing):
+  - organization_id MUST be non-empty for org-scoped entities.
+- Determinism guarantees: UNSPECIFIED.
+- MUST NOT: Include infrastructure details or adapter behavior in the port definition.
+- Evidence:
+  - [EVIDENCE:docs/specs/core_domain_model.md:L17-L35]
+  - [EVIDENCE:docs/specs/18_invariants_minimal.md:L12-L20]
+  - [EVIDENCE:planninghub/domain/entities.py:L55-L67]
+  - [EVIDENCE:docs/specs/architecture/hexagonal_architecture_contract.md:L16-L31]
+
+### GetProjectPort
+- Name: GetProjectPort.
+- Responsibility: Retrieve a Project by id and return the Project DTO.
+- Input DTO(s):
+  - GetProjectRequest
+    - project_id: str
+- Output DTO(s):
+  - GetProjectResponse
+    - project: ProjectDTO
+      - id: str
+      - organization_id: str
+      - name: str
+- Error contract (if any): UNSPECIFIED (no port or handler exists yet).
+- Persistence expectations:
+  - Delegates to a persistence port for Project lookup. Port surface is UNSPECIFIED.
+  - Not-found behavior: UNSPECIFIED.
+- Determinism guarantees: UNSPECIFIED.
+- MUST NOT: Include infrastructure details or adapter behavior in the port definition.
+- Evidence:
+  - [EVIDENCE:docs/specs/core_domain_model.md:L17-L35]
+  - [EVIDENCE:planninghub/domain/entities.py:L55-L67]
+  - [EVIDENCE:docs/specs/architecture/hexagonal_architecture_contract.md:L16-L31]
+
+### CreateResourcePort
+- Name: CreateResourcePort.
+- Responsibility: Create a Resource in organization scope and return the stored Resource DTO.
+- Input DTO(s):
+  - CreateResourceRequest
+    - organization_id: str
+    - type: str (ResourceType: human, asset, service)
+    - name: str
+- Output DTO(s):
+  - CreateResourceResponse
+    - resource: ResourceDTO
+      - id: str
+      - organization_id: str
+      - type: str (ResourceType)
+      - name: str
+- Error contract (if any): UNSPECIFIED (no port or handler exists yet).
+- Persistence expectations:
+  - Delegates to a persistence port for Resource storage. Port surface is UNSPECIFIED.
+  - Uniqueness rules: UNSPECIFIED.
+  - Not-found behavior: UNSPECIFIED.
+- Invariants (existing):
+  - organization_id MUST be non-empty for org-scoped entities.
+  - Resource type MUST be one of: human, asset, service.
+- Determinism guarantees: UNSPECIFIED.
+- MUST NOT: Include infrastructure details or adapter behavior in the port definition.
+- Evidence:
+  - [EVIDENCE:docs/specs/core_domain_model.md:L33-L49]
+  - [EVIDENCE:docs/specs/12_enums_and_states.md:L1-L13]
+  - [EVIDENCE:docs/specs/18_invariants_minimal.md:L12-L20]
+  - [EVIDENCE:planninghub/domain/entities.py:L94-L104]
+  - [EVIDENCE:planninghub/domain/value_objects.py:L12-L23]
+  - [EVIDENCE:docs/specs/architecture/hexagonal_architecture_contract.md:L16-L31]
+
+### GetResourcePort
+- Name: GetResourcePort.
+- Responsibility: Retrieve a Resource by id and return the Resource DTO.
+- Input DTO(s):
+  - GetResourceRequest
+    - resource_id: str
+- Output DTO(s):
+  - GetResourceResponse
+    - resource: ResourceDTO
+      - id: str
+      - organization_id: str
+      - type: str (ResourceType)
+      - name: str
+- Error contract (if any): UNSPECIFIED (no port or handler exists yet).
+- Persistence expectations:
+  - Delegates to a persistence port for Resource lookup. Port surface is UNSPECIFIED.
+  - Not-found behavior: UNSPECIFIED.
+- Determinism guarantees: UNSPECIFIED.
+- MUST NOT: Include infrastructure details or adapter behavior in the port definition.
+- Evidence:
+  - [EVIDENCE:docs/specs/core_domain_model.md:L33-L49]
+  - [EVIDENCE:planninghub/domain/entities.py:L94-L104]
+  - [EVIDENCE:planninghub/domain/value_objects.py:L12-L23]
   - [EVIDENCE:docs/specs/architecture/hexagonal_architecture_contract.md:L16-L31]
 
 ### AddMembershipPort
@@ -636,8 +760,12 @@ Evidence:
   - CreateUser (application)
   - DeactivateUser (application)
   - CreateOrganization (application)
+  - CreateProject (application)
+  - GetProject (application)
   - AddMembership (application)
   - ListMemberships (application)
+  - CreateResource (application)
+  - GetResource (application)
   - CreateReservation (application)
   - UpdateReservation (application)
   - GetReservation (application)
