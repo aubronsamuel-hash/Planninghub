@@ -35,3 +35,28 @@ handling without selecting a storage technology.
 
 ## References
 - docs/specs/persistence_real_adapter_contract.md
+
+---
+
+Date: 2026-01-20
+
+## Summary of changes
+- Added governance and documentation authority references for Codex operations.
+- Added product vision summary and status documentation (current state and phase status).
+- Added decision entry for Phase 4 status conflict between roadmap and audit.
+- Added status and governance indexes and cross links between README, vision, specs, roadmap, and status.
+
+## Rationale
+Consolidates documentation into a traceable source of truth and records a governance conflict for resolution.
+
+## References
+- docs/governance/codex_governance.md
+- docs/governance/documentation_authority.md
+- docs/vision/product_vision.md
+- docs/status/current_state.md
+- docs/status/phase_status.md
+- docs/decisions/2026-01-20-phase-4-status-conflict.md
+- README.md
+- docs/specs/index.md
+- docs/roadmap/roadmap_v1.md
+- docs/index.md

@@ -1,11 +1,15 @@
 # Docs Index
 
 ## Core
-- [Vision](Planning_hub_architecture_vision_produit_v_1.md)
+- [Vision](vision/index.md)
+- [Canonical vision](Planning_hub_architecture_vision_produit_v_1.md)
+- [Product vision summary](vision/product_vision.md)
 - [Roadmap](roadmap/index.md)
 - [Specs](specs/index.md)
 - [Audits](audits/implementation_readiness.md)
 - [Governance log](audits/governance_sync_log.md)
+- [Governance](governance/index.md)
+- [Status](status/index.md)
 
 ## Agents
 - [Agents index](agents/index.md)
