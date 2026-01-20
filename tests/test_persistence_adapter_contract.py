@@ -38,13 +38,17 @@ class PersistencePort(
     pass
 
 
-@pytest.fixture(params=["memory", "sqlite"])
-def persistence_adapter(request: pytest.FixtureRequest, tmp_path) -> PersistencePort:
+@pytest.fixture(
+    params=[
+        pytest.param("memory", id="memory"),
+        pytest.param("sqlite", id="sqlite"),
+    ]
+)
+def persistence_adapter(request: pytest.FixtureRequest) -> PersistencePort:
     if request.param == "memory":
         return InMemoryPersistenceAdapter()
     if request.param == "sqlite":
-        db_path = tmp_path / "planninghub.sqlite3"
-        return SQLitePersistenceAdapter(db_path=str(db_path))
+        return SQLitePersistenceAdapter(db_path=":memory:")
     raise ValueError(f"Unknown adapter param: {request.param}")
 
 
