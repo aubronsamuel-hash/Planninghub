@@ -1,6 +1,7 @@
 """Compliance tests for persistence adapter contract."""
 
 from datetime import datetime, timedelta
+from typing import Protocol
 
 import pytest
 
@@ -27,10 +28,17 @@ from planninghub.application.ports.persistence import (
 )
 
 
-@pytest.fixture()
-def persistence_adapter() -> (
-    IdentityPersistencePort & ReservationPersistencePort & ConflictPersistencePort
+class PersistencePort(
+    IdentityPersistencePort,
+    ReservationPersistencePort,
+    ConflictPersistencePort,
+    Protocol,
 ):
+    pass
+
+
+@pytest.fixture()
+def persistence_adapter() -> PersistencePort:
     return InMemoryPersistenceAdapter()
 
 
