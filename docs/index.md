@@ -6,6 +6,7 @@
 - [Product vision summary](vision/product_vision.md)
 - [Roadmap](roadmap/index.md)
 - [Specs](specs/index.md)
+- [Architecture](architecture/README.md)
 - [Audits](audits/implementation_readiness.md)
 - [Governance log](audits/governance_sync_log.md)
 - [Governance](governance/index.md)
