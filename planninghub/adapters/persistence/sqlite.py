@@ -77,8 +77,8 @@ class SQLitePersistenceAdapter(
         return user
 
     def deactivate_user(self, request: DeactivateUserRequest) -> UserDTO:
-        user = self._get_required_user(request.user_id)
         with self._connection:
+            user = self._get_required_user(request.user_id)
             updated = replace(user, status="inactive")
             self._connection.execute(
                 "UPDATE users SET status = ? WHERE id = ?",
@@ -188,20 +188,20 @@ class SQLitePersistenceAdapter(
         return reservation
 
     def update_reservation(self, request: UpdateReservationRequest) -> ReservationDTO:
-        reservation = self._get_required_reservation(request.reservation_id)
-        starts_at_utc = request.starts_at_utc or reservation.starts_at_utc
-        ends_at_utc = request.ends_at_utc or reservation.ends_at_utc
-        self._require_valid_interval(starts_at_utc, ends_at_utc)
-        resource_id = (
-            reservation.resource_id
-            if request.resource_id is None
-            else request.resource_id
-        )
-        status = reservation.status
-        if request.status is not None:
-            self._require_reservation_status(request.status)
-            status = request.status
         with self._connection:
+            reservation = self._get_required_reservation(request.reservation_id)
+            starts_at_utc = request.starts_at_utc or reservation.starts_at_utc
+            ends_at_utc = request.ends_at_utc or reservation.ends_at_utc
+            self._require_valid_interval(starts_at_utc, ends_at_utc)
+            resource_id = (
+                reservation.resource_id
+                if request.resource_id is None
+                else request.resource_id
+            )
+            status = reservation.status
+            if request.status is not None:
+                self._require_reservation_status(request.status)
+                status = request.status
             updated = ReservationDTO(
                 id=reservation.id,
                 organization_id=reservation.organization_id,
@@ -271,63 +271,71 @@ class SQLitePersistenceAdapter(
             if reservation.organization_id != request.organization_id:
                 raise ValueError("Reservation is not scoped to the organization.")
             if reservation.resource_id is None:
-                return []
-            rows = self._connection.execute(
-                """
-                SELECT id, organization_id, resource_id, starts_at_utc, ends_at_utc,
-                       timezone, economic_value, status
-                FROM reservations
-                WHERE organization_id = ? AND resource_id = ? AND id != ?
-                ORDER BY rowid
-                """,
-                (reservation.organization_id, reservation.resource_id, reservation.id),
-            ).fetchall()
-            conflicts: list[ConflictDTO] = []
-            for row in rows:
-                other = self._row_to_reservation(row)
-                if not self._overlaps(
-                    reservation.starts_at_utc,
-                    reservation.ends_at_utc,
-                    TimeRangeDTO(start_utc=other.starts_at_utc, end_utc=other.ends_at_utc),
-                ):
-                    continue
-                conflict = self._get_conflict_for_pair(reservation.id, other.id)
-                if conflict is None:
-                    self._require_conflict_severity("high")
-                    conflict_id = self._next_id("conf")
-                    conflict = ConflictDTO(
-                        id=conflict_id,
-                        organization_id=reservation.organization_id,
-                        reservation_id=reservation.id,
-                        resource_id=reservation.resource_id,
-                        severity="high",
-                        reason=f"overlap:{other.id}",
-                    )
-                    self._connection.execute(
-                        """
-                        INSERT INTO conflicts (
-                            id,
-                            organization_id,
-                            reservation_id,
-                            resource_id,
-                            severity,
-                            reason,
-                            other_reservation_id
-                        )
-                        VALUES (?, ?, ?, ?, ?, ?, ?)
-                        """,
-                        (
-                            conflict.id,
-                            conflict.organization_id,
-                            conflict.reservation_id,
-                            conflict.resource_id,
-                            conflict.severity,
-                            conflict.reason,
-                            other.id,
+                conflicts: list[ConflictDTO] = []
+            else:
+                rows = self._connection.execute(
+                    """
+                    SELECT id, organization_id, resource_id, starts_at_utc, ends_at_utc,
+                           timezone, economic_value, status
+                    FROM reservations
+                    WHERE organization_id = ? AND resource_id = ? AND id != ?
+                    ORDER BY rowid
+                    """,
+                    (
+                        reservation.organization_id,
+                        reservation.resource_id,
+                        reservation.id,
+                    ),
+                ).fetchall()
+                conflicts = []
+                for row in rows:
+                    other = self._row_to_reservation(row)
+                    if not self._overlaps(
+                        reservation.starts_at_utc,
+                        reservation.ends_at_utc,
+                        TimeRangeDTO(
+                            start_utc=other.starts_at_utc,
+                            end_utc=other.ends_at_utc,
                         ),
-                    )
-                conflicts.append(conflict)
-            return conflicts
+                    ):
+                        continue
+                    conflict = self._get_conflict_for_pair(reservation.id, other.id)
+                    if conflict is None:
+                        self._require_conflict_severity("high")
+                        conflict_id = self._next_id("conf")
+                        conflict = ConflictDTO(
+                            id=conflict_id,
+                            organization_id=reservation.organization_id,
+                            reservation_id=reservation.id,
+                            resource_id=reservation.resource_id,
+                            severity="high",
+                            reason=f"overlap:{other.id}",
+                        )
+                        self._connection.execute(
+                            """
+                            INSERT INTO conflicts (
+                                id,
+                                organization_id,
+                                reservation_id,
+                                resource_id,
+                                severity,
+                                reason,
+                                other_reservation_id
+                            )
+                            VALUES (?, ?, ?, ?, ?, ?, ?)
+                            """,
+                            (
+                                conflict.id,
+                                conflict.organization_id,
+                                conflict.reservation_id,
+                                conflict.resource_id,
+                                conflict.severity,
+                                conflict.reason,
+                                other.id,
+                            ),
+                        )
+                    conflicts.append(conflict)
+        return conflicts
 
     def list_conflicts(self, request: ListConflictsRequest) -> list[ConflictDTO]:
         self._require_organization_id(request.organization_id, "conflict")
