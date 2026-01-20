@@ -36,14 +36,17 @@
 - IDs MUST be unique within their entity namespace across all organizations.
 - IDs MUST be treated as opaque by the application; no semantic meaning is required.
 - The adapter MUST return the assigned IDs in responses.
-- Implementation details (generation, storage, encoding) are intentionally unspecified.
+- Implementations MAY use any ID generation strategy; the in-memory adapter uses
+  deterministic prefix-counter IDs (for example, org-1, user-1) but real adapters
+  are not required to match that format.
 
 ## Ordering guarantees
 - List operations MUST return a deterministic order for the same request and data
   snapshot.
 - If the request includes explicit ordering semantics in the port contract, the adapter
   MUST honor them.
-- If no ordering semantics are specified, the order is undefined beyond determinism.
+- If no ordering semantics are specified, the order is unspecified beyond determinism
+  and MUST NOT be treated as a semantic sort.
 
 ## Concurrency expectations
 - The adapter MUST tolerate concurrent requests across all covered ports without data
@@ -55,11 +58,9 @@
   across unrelated entities.
 
 ## Error contract
-- Domain error: invalid inputs or invariant violations MUST surface as a domain error.
-- Not found error: requests for missing entities MUST surface as a not found error.
-- Infrastructure error: storage unavailability, timeouts, or IO failures MUST surface
-  as an infrastructure error.
-- The adapter MUST distinguish these error categories.
+- Invalid inputs or invariant violations MUST raise ValueError.
+- Requests for missing entities in operations that require an existing record MUST
+  raise KeyError.
 - Vendor-specific error details or internal storage metadata MUST NOT leak to the
   application.
 
