@@ -11,6 +11,8 @@
 - [Governance log](audits/governance_sync_log.md)
 - [Governance](governance/index.md)
 - [Status](status/index.md)
+- [Security trust boundaries](security/trust_boundaries.md)
+- [Domain glossary](glossary/domain_terms.md)
 
 ## Agents
 - [Agents index](agents/index.md)
