@@ -6,6 +6,7 @@ from typing import Protocol
 import pytest
 
 from planninghub.adapters.persistence.in_memory import InMemoryPersistenceAdapter
+from planninghub.adapters.persistence.sqlite import SQLitePersistenceAdapter
 from planninghub.application.dtos.conflict import DetectConflictsRequest, ListConflictsRequest
 from planninghub.application.dtos.identity import (
     AddMembershipRequest,
@@ -37,9 +38,14 @@ class PersistencePort(
     pass
 
 
-@pytest.fixture()
-def persistence_adapter() -> PersistencePort:
-    return InMemoryPersistenceAdapter()
+@pytest.fixture(params=["memory", "sqlite"])
+def persistence_adapter(request: pytest.FixtureRequest, tmp_path) -> PersistencePort:
+    if request.param == "memory":
+        return InMemoryPersistenceAdapter()
+    if request.param == "sqlite":
+        db_path = tmp_path / "planninghub.sqlite3"
+        return SQLitePersistenceAdapter(db_path=str(db_path))
+    raise ValueError(f"Unknown adapter param: {request.param}")
 
 
 class TestIdentityContract:
