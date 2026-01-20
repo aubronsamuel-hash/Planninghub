@@ -13,3 +13,6 @@
 ## Decisions
 - [Decision log](decisions/README.md)
 - [Decision 001 - Canonical Vision Document](decisions/decision_001_canonical_vision_doc.md)
+
+## Ops
+- [Persistence smoke runbook](ops/runbook_persistence_smoke.md)
