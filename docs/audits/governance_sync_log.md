@@ -60,3 +60,25 @@ Consolidates documentation into a traceable source of truth and records a govern
 - docs/specs/index.md
 - docs/roadmap/roadmap_v1.md
 - docs/index.md
+
+---
+
+Date: 2026-01-20
+
+## Summary of changes
+- Added ubiquitous language enforcement rules and indexes.
+- Added spec-to-code traceability matrix and index.
+- Added architecture release notes from ADRs and index.
+- Linked new documentation sections in the docs index.
+
+## Rationale
+Record language rules, traceability, and ADR-based release notes as governed documentation outputs.
+
+## References
+- docs/language/ubiquitous_language_rules.md
+- docs/language/index.md
+- docs/traceability/spec_to_code_matrix.md
+- docs/traceability/index.md
+- docs/releases/architecture_release_notes.md
+- docs/releases/index.md
+- docs/index.md
