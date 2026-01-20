@@ -28,6 +28,11 @@ from planninghub.application.ports.persistence import (
     ReservationPersistencePort,
 )
 
+ADAPTER_FACTORIES = {
+    "memory": InMemoryPersistenceAdapter,
+    "sqlite": lambda: SQLitePersistenceAdapter(db_path=":memory:"),
+}
+
 
 class PersistencePort(
     IdentityPersistencePort,
@@ -45,11 +50,10 @@ class PersistencePort(
     ]
 )
 def persistence_adapter(request: pytest.FixtureRequest) -> PersistencePort:
-    if request.param == "memory":
-        return InMemoryPersistenceAdapter()
-    if request.param == "sqlite":
-        return SQLitePersistenceAdapter(db_path=":memory:")
-    raise ValueError(f"Unknown adapter param: {request.param}")
+    factory = ADAPTER_FACTORIES.get(request.param)
+    if factory is None:
+        raise ValueError(f"Unknown adapter param: {request.param}")
+    return factory()
 
 
 class TestIdentityContract:

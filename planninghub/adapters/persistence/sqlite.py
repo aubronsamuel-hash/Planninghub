@@ -113,18 +113,21 @@ class SQLitePersistenceAdapter(
                 organization_id=request.organization_id,
                 role=request.role,
             )
-            self._connection.execute(
-                """
-                INSERT INTO memberships (id, user_id, organization_id, role)
-                VALUES (?, ?, ?, ?)
-                """,
-                (
-                    membership.id,
-                    membership.user_id,
-                    membership.organization_id,
-                    membership.role,
-                ),
-            )
+            try:
+                self._connection.execute(
+                    """
+                    INSERT INTO memberships (id, user_id, organization_id, role)
+                    VALUES (?, ?, ?, ?)
+                    """,
+                    (
+                        membership.id,
+                        membership.user_id,
+                        membership.organization_id,
+                        membership.role,
+                    ),
+                )
+            except sqlite3.IntegrityError as exc:
+                raise ValueError("Duplicate membership for user and organization.") from exc
         return membership
 
     def list_memberships(self, request: ListMembershipsRequest) -> list[MembershipDTO]:
@@ -309,29 +312,37 @@ class SQLitePersistenceAdapter(
                             severity="high",
                             reason=f"overlap:{other.id}",
                         )
-                        self._connection.execute(
-                            """
-                            INSERT INTO conflicts (
-                                id,
-                                organization_id,
-                                reservation_id,
-                                resource_id,
-                                severity,
-                                reason,
-                                other_reservation_id
+                        try:
+                            self._connection.execute(
+                                """
+                                INSERT INTO conflicts (
+                                    id,
+                                    organization_id,
+                                    reservation_id,
+                                    resource_id,
+                                    severity,
+                                    reason,
+                                    other_reservation_id
+                                )
+                                VALUES (?, ?, ?, ?, ?, ?, ?)
+                                """,
+                                (
+                                    conflict.id,
+                                    conflict.organization_id,
+                                    conflict.reservation_id,
+                                    conflict.resource_id,
+                                    conflict.severity,
+                                    conflict.reason,
+                                    other.id,
+                                ),
                             )
-                            VALUES (?, ?, ?, ?, ?, ?, ?)
-                            """,
-                            (
-                                conflict.id,
-                                conflict.organization_id,
-                                conflict.reservation_id,
-                                conflict.resource_id,
-                                conflict.severity,
-                                conflict.reason,
+                        except sqlite3.IntegrityError:
+                            conflict = self._get_conflict_for_pair(
+                                reservation.id,
                                 other.id,
-                            ),
-                        )
+                            )
+                            if conflict is None:
+                                raise
                     conflicts.append(conflict)
         return conflicts
 
