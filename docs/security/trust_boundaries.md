@@ -38,11 +38,12 @@ Description:
 - Ports, handlers, and DTOs in the application core.
 
 Trust Level:
-- UNKNOWN
+- Low. The application layer currently performs insufficient input validation, exposing the domain core to potentially malicious data. Business logic could be abused without proper authorization checks.
 
 Evidence:
 - docs/architecture/overview_ascii.md
 - docs/specs/package_boundaries_and_public_api.md
+- docs/security/vulnerability_report_analysis.md
 
 ## Adapters (http, persistence)
 
@@ -50,7 +51,7 @@ Description:
 - Adapters that implement ports for HTTP and persistence.
 
 Trust Level:
-- UNKNOWN
+- Very Low. The HTTP adapter is exposed to the public internet with no authentication or authorization, allowing any anonymous user to access it. There is no logging to monitor for malicious activity.
 
 Evidence:
 - docs/architecture/overview_ascii.md
