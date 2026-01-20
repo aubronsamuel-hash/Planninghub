@@ -1,18 +1,43 @@
 """Smoke tests for application wiring."""
 
 from datetime import datetime
+from pathlib import Path
+
+import pytest
 
 from planninghub.application.dtos.identity import CreateOrganizationRequest
-from planninghub.application.dtos.time_reservation import CreateReservationRequest
-from planninghub.infra.wiring import AppConfig, build_application
+from planninghub.application.dtos.time_reservation import (
+    CreateReservationRequest,
+    GetReservationRequest,
+)
+from planninghub.infra.config import AppConfig, default_config
+from planninghub.infra.wiring import build_persistence_adapter
 
 
-def _assert_persistence_operations(app_config: AppConfig) -> None:
-    app = build_application(app_config)
-    organization = app.persistence.create_organization(
-        CreateOrganizationRequest(name="Org")
-    )
-    reservation = app.persistence.create_reservation(
+def test_default_config_uses_memory_backend(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("PLANNINGHUB_PERSISTENCE_BACKEND", raising=False)
+    monkeypatch.delenv("PLANNINGHUB_SQLITE_DB_PATH", raising=False)
+
+    config = default_config()
+
+    assert config.persistence_backend == "memory"
+    assert config.sqlite_db_path is None
+
+
+def test_sqlite_backend_requires_db_path() -> None:
+    config = AppConfig(persistence_backend="sqlite", sqlite_db_path=None)
+
+    with pytest.raises(ValueError):
+        build_persistence_adapter(config)
+
+
+def test_sqlite_file_backed_smoke(tmp_path: Path) -> None:
+    db_path = tmp_path / "planninghub.sqlite3"
+    config = AppConfig(persistence_backend="sqlite", sqlite_db_path=str(db_path))
+
+    adapter = build_persistence_adapter(config)
+    organization = adapter.create_organization(CreateOrganizationRequest(name="Org"))
+    reservation = adapter.create_reservation(
         CreateReservationRequest(
             organization_id=organization.id,
             resource_id="resrc-1",
@@ -22,16 +47,11 @@ def _assert_persistence_operations(app_config: AppConfig) -> None:
             economic_value=None,
         )
     )
-    assert reservation.organization_id == organization.id
+    persisted_id = reservation.id
 
-
-def test_build_application_with_memory_backend() -> None:
-    _assert_persistence_operations(
-        AppConfig(persistence_backend="memory", sqlite_db_path=None)
+    new_adapter = build_persistence_adapter(config)
+    fetched = new_adapter.get_reservation(
+        GetReservationRequest(reservation_id=persisted_id)
     )
 
-
-def test_build_application_with_sqlite_backend() -> None:
-    _assert_persistence_operations(
-        AppConfig(persistence_backend="sqlite", sqlite_db_path=":memory:")
-    )
+    assert fetched.id == persisted_id
