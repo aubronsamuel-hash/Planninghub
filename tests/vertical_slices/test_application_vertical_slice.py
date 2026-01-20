@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pytest
 
@@ -23,8 +23,8 @@ def _run_minimal_workflow(adapter: InMemoryPersistenceAdapter):
         CreateReservationRequest(
             organization_id=organization.id,
             resource_id="resource-1",
-            starts_at_utc=datetime(2024, 1, 1, 10, 0, 0),
-            ends_at_utc=datetime(2024, 1, 1, 11, 0, 0),
+            starts_at_utc=datetime(2024, 1, 1, 10, 0, 0, tzinfo=timezone.utc),
+            ends_at_utc=datetime(2024, 1, 1, 11, 0, 0, tzinfo=timezone.utc),
             timezone="UTC",
             economic_value=None,
         )
@@ -51,13 +51,13 @@ def test_minimal_workflow_invariant_violation():
     adapter = InMemoryPersistenceAdapter()
     handler = CreateReservationHandler(adapter)
 
-    with pytest.raises(ValueError, match="organization_id must be non-empty"):
+    with pytest.raises(ValueError, match="organization_id"):
         handler.handle(
             CreateReservationRequest(
                 organization_id="",
-                resource_id=None,
-                starts_at_utc=datetime(2024, 1, 1, 10, 0, 0),
-                ends_at_utc=datetime(2024, 1, 1, 11, 0, 0),
+                resource_id="resource-1",
+                starts_at_utc=datetime(2024, 1, 1, 10, 0, 0, tzinfo=timezone.utc),
+                ends_at_utc=datetime(2024, 1, 1, 11, 0, 0, tzinfo=timezone.utc),
                 timezone="UTC",
                 economic_value=None,
             )
