@@ -8,8 +8,13 @@
 
 ## Run memory backend
 - set env:
-  - export PLANNINGHUB_PERSISTENCE_BACKEND=memory
-  - unset PLANNINGHUB_SQLITE_DB_PATH
+  - Bash:
+    - export PLANNINGHUB_PERSISTENCE_BACKEND=memory
+    - unset PLANNINGHUB_SQLITE_DB_PATH
+  - PowerShell:
+    - setx PLANNINGHUB_PERSISTENCE_BACKEND "memory"
+    - $env:PLANNINGHUB_PERSISTENCE_BACKEND = "memory"
+    - Remove-Item Env:PLANNINGHUB_SQLITE_DB_PATH
 - run:
   - python -m planninghub.infra.cli_smoke
 
@@ -18,8 +23,14 @@ Expected output example:
 
 ## Run sqlite backend
 - set env:
-  - export PLANNINGHUB_PERSISTENCE_BACKEND=sqlite
-  - export PLANNINGHUB_SQLITE_DB_PATH=./.local/planninghub.sqlite3
+  - Bash:
+    - export PLANNINGHUB_PERSISTENCE_BACKEND=sqlite
+    - export PLANNINGHUB_SQLITE_DB_PATH=./.local/planninghub.sqlite3
+  - PowerShell:
+    - setx PLANNINGHUB_PERSISTENCE_BACKEND "sqlite"
+    - setx PLANNINGHUB_SQLITE_DB_PATH ".\\.local\\planninghub.sqlite3"
+    - $env:PLANNINGHUB_PERSISTENCE_BACKEND = "sqlite"
+    - $env:PLANNINGHUB_SQLITE_DB_PATH = ".\\.local\\planninghub.sqlite3"
 - run:
   - python -m planninghub.infra.cli_smoke
 
