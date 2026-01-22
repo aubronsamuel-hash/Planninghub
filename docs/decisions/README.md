@@ -14,3 +14,4 @@ Use the Decision Required template in AGENT.md when creating new decision files.
 
 ## Log
 - [2026-01-20-phase-4-status-conflict](2026-01-20-phase-4-status-conflict.md)
+- [2026-01-23-step-selection-blocked-by-phase-4-conflict](2026-01-23-step-selection-blocked-by-phase-4-conflict.md)
