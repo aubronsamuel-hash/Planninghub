@@ -25,3 +25,10 @@ Legacy agents:
 - [AGENT.security](AGENT.security.md): Security reviews and fixes.
 
 If an agent needs scope changes or new responsibilities, update AGENT.md and record the change in the changelog.
+
+## Shared rules for all agents
+- No agent may write code without reading docs/README_FOR_CODEX.md first.
+- No agent may bypass docs/dev/IMPLEMENTATION_PLAYBOOK.md.
+- If docs/dev/** conflicts with a higher authority source, a decision document in docs/decisions/ is REQUIRED.
+- Every agent MUST declare which docs/dev/** files it consumes and which paths it may modify.
+- Any agent MUST refuse to act if required documentation is missing or out of date.
