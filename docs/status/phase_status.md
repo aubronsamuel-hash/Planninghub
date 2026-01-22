@@ -29,11 +29,10 @@ Evidence:
 - docs/audits/implementation_readiness.md
 
 ## Phase 4: API and HTTP framework wiring (future)
-Status: IN PROGRESS
+Status: DONE
 Evidence:
 - docs/audits/implementation_readiness.md
-Decision required:
-- docs/decisions/2026-01-20-phase-4-status-conflict.md
+Ref: docs/roadmap/roadmap_v1.md#phase-4-api-and-http-framework-wiring-future
 
 ## Phase 5+: Intelligence, finance, marketplace, offline, BI, integrations (future)
 Status: IN PROGRESS
