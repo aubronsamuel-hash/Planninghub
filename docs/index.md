@@ -4,6 +4,7 @@
 - [Vision](vision/index.md)
 - [Canonical vision](Planning_hub_architecture_vision_produit_v_1.md)
 - [Product vision summary](vision/product_vision.md)
+- [Application overview](vision/application_overview.md)
 - [Roadmap](roadmap/index.md)
 - [Specs](specs/index.md)
 - [Architecture](architecture/README.md)
