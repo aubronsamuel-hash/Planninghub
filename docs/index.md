@@ -7,6 +7,8 @@
 - [Application overview](vision/application_overview.md)
 - [Roadmap](roadmap/index.md)
 - [Specs](specs/index.md)
+- [README for Codex](README_FOR_CODEX.md)
+- [Developer docs index](dev/INDEX.md)
 - [Architecture](architecture/README.md)
 - [Language](language/index.md)
 - [UX](ux/index.md)

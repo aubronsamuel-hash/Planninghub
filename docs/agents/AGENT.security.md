@@ -19,6 +19,13 @@ Required inputs from the orchestrator:
 - Required audits and decisions, including docs/audits/implementation_readiness.md.
 - Constraints (ASCII only, STEP MODE, validation gates).
 
+## 2.1 Mandatory dev documentation inputs
+- docs/README_FOR_CODEX.md is the first file to read before coding.
+- docs/dev/IMPLEMENTATION_PLAYBOOK.md is mandatory workflow.
+- docs/dev/CODING_RULES.md is a hard constraint.
+- docs/dev/CONTRACTS_OVERVIEW.md is the source of truth for implementation status.
+- docs/dev/CI_AND_GUARDS.md predicts CI behavior and required checks.
+
 ## 3. Standard Workflow (Agent Local)
 Step 1: Read relevant files (scope + audits + decisions).
 Step 2: Identify gaps against requested objective.
@@ -44,6 +51,7 @@ Step 6: Report in RESPONSE format.
 - Scope is undefined or required change is out of scope.
 - Unresolved security risk (DECISION REQUIRED).
 - Implementation readiness audit gate is not satisfied.
+- Required docs/dev/** inputs are missing or out of date.
 
 ## 8. REQUEST/RESPONSE Templates
 REQUEST
