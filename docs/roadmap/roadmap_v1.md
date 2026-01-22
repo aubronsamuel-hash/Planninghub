@@ -93,6 +93,8 @@ Stop conditions
 ### Phase 4: API and HTTP framework wiring (future)
 Outcomes
 - Minimal HTTP adapter wiring documented and implemented for reservation evaluation.
+Note: Phase 4 status is DONE per docs/audits/implementation_readiness.md (Phase 4 status evidence).
+Ref: docs/roadmap/roadmap_v1.md#phase-4-api-and-http-framework-wiring-future
 
 Non-goals
 - No authentication or authorization.
