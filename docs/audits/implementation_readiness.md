@@ -53,13 +53,14 @@ DO NOT DO:
   - Application ports and handlers: [EVIDENCE:planninghub/application/ports/identity.py:L21-L43] [EVIDENCE:planninghub/application/handlers/identity.py:L30-L83]
   - Persistence and HTTP adapters: [EVIDENCE:planninghub/adapters/persistence/in_memory.py:L49-L252] [EVIDENCE:planninghub/adapters/http/mappers.py:L19-L49]
   - Tests: [EVIDENCE:tests/test_phase3_ports_adapters_skeleton.py:L1-L248] [EVIDENCE:tests/test_http_adapter_mappers.py:L1-L75]
-- Phase 4: DONE. In-memory adapter guarantees:
-  - Deterministic ID generation with incrementing counters per prefix.
-  - Validation for organization_id, role, reservation status, conflict severity, and intervals.
-  - Conflict detection emits \"high\" severity with reason \"overlap:<other-id>\".
+- Phase 4: DONE. Minimal HTTP adapter and in-memory persistence adapter are implemented.
+  Decision: docs/decisions/2026-01-22-phase-4-scope-alignment.md
   Evidence:
-  - [EVIDENCE:planninghub/adapters/persistence/in_memory.py:L49-L287]
-  - [EVIDENCE:tests/test_persistence_adapter_in_memory.py:L1-L159]
+  - HTTP adapter routes and mappers:
+    [EVIDENCE:planninghub/adapters/fastapi_app/routes.py:L1-L39]
+    [EVIDENCE:planninghub/adapters/http/mappers.py:L19-L49]
+  - In-memory persistence adapter:
+    [EVIDENCE:planninghub/adapters/persistence/in_memory.py:L49-L287]
 - Phase 5: STARTED (spec only). Real persistence adapter contract:
   - [EVIDENCE:docs/specs/persistence_real_adapter_contract.md:L1-L68]
 
