@@ -73,11 +73,11 @@ Stop conditions
 
 ### Phase 3: Persistence skeleton
 Outcomes
-- Storage contracts defined as interfaces only.
-- Minimal storage invariants documented.
+- Storage contracts defined and documented.
+- In-memory and sqlite persistence adapters exist for deterministic testing and wiring.
 
 Non-goals
-- No database selection.
+- No production database selection.
 - No migrations or schemas.
 
 Dependencies
@@ -85,23 +85,27 @@ Dependencies
 
 Definition of Done
 - Persistence contracts are defined in specs or a dedicated storage spec.
-- No persistence implementation exists.
+- In-memory and sqlite adapters implement the defined persistence ports.
 
 Stop conditions
 - Any storage contract conflicts with domain invariants.
 
 ### Phase 4: API and HTTP framework wiring (future)
 Outcomes
-- Candidate framework selection documented.
+- Minimal HTTP adapter wiring documented and implemented for reservation evaluation.
 
 Non-goals
-- No API implementation.
+- No authentication or authorization.
+- No workflow orchestration.
+- No external integrations.
+- No business rule expansion beyond existing specs.
 
 Dependencies
 - Phase 3 done.
 
 Definition of Done
-- Decision recorded for framework candidate only.
+- Decision recorded to authorize the minimal HTTP adapter and in-memory persistence adapter.
+  See docs/decisions/2026-01-22-phase-4-scope-alignment.md.
 
 Stop conditions
 - Baseline tests are not green.
