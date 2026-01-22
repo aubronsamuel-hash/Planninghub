@@ -27,6 +27,8 @@
 ## Decisions
 - [Decision log](decisions/README.md)
 - [Decision 001 - Canonical Vision Document](decisions/decision_001_canonical_vision_doc.md)
+- [Decision Required - Phase 4 status conflict](decisions/2026-01-20-phase-4-status-conflict.md)
+Ref: docs/roadmap/roadmap_v1.md#phase-4-api-and-http-framework-wiring-future
 
 ## Ops
 - [Persistence smoke runbook](ops/runbook_persistence_smoke.md)

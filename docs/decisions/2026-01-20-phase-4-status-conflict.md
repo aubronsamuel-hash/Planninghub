@@ -1,7 +1,7 @@
 # Decision Required: phase 4 status conflict
 
 Date: 2026-01-20
-Status: Proposed
+Status: Accepted
 Owners: documentation governance
 
 ## Context
@@ -13,10 +13,25 @@ Owners: documentation governance
 2) Update the audit Phase 4 status to align with the roadmap future definition.
 
 ## Decision
-- DECISION REQUIRED
+- Phase 4 is AUTHORITATIVELY marked as DONE.
+- The source of truth for Phase 4 completion is docs/audits/implementation_readiness.md.
+- The roadmap wording for Phase 4 remains unchanged in scope, but its STATUS is considered DONE for this repository.
 
 ## Rationale
-- Phase status must be consistent across the roadmap and audits to keep governance deterministic.
+- The implementation_readiness audit is evidence-based and reflects executed work.
+- Governance requires status to be derived from verified audit evidence, not intent wording.
+- Leaving Phase 4 as future or in-progress while audit reports DONE blocks deterministic step selection.
 
 ## Consequences
-- Phase status documentation and downstream plans depend on the resolved definition.
+- docs/status/phase_status.md MUST mark Phase 4 as DONE.
+- docs/roadmap/roadmap_v1.md MAY include a clarification note that Phase 4 is considered DONE per audit evidence.
+- Step selection is unblocked for Controlled Forward Progress.
+- Any future redefinition of Phase 4 scope requires a new decision file.
+
+## Update 2026-01-24
+- Conflict remains unresolved, which blocks identifying the current active phase and
+  any next allowed step until a decision is recorded.
+Ref: docs/roadmap/roadmap_v1.md#phase-4-api-and-http-framework-wiring-future
+
+Ref: docs/roadmap/roadmap_v1.md#phase-4-api-and-http-framework-wiring-future
+Ref: docs/audits/implementation_readiness.md#phase-4
