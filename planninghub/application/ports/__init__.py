@@ -15,7 +15,6 @@ from planninghub.application.ports.identity import (
     DeactivateUserPort,
     ListMembershipsPort,
 )
-from planninghub.application.ports.project import CreateProjectPort, GetProjectPort
 from planninghub.application.ports.persistence import (
     ConflictPersistencePort,
     IdentityPersistencePort,
@@ -23,6 +22,7 @@ from planninghub.application.ports.persistence import (
     ReservationPersistencePort,
     ResourcePersistencePort,
 )
+from planninghub.application.ports.project import CreateProjectPort, GetProjectPort
 from planninghub.application.ports.resource import CreateResourcePort, GetResourcePort
 from planninghub.application.ports.time_reservation import (
     CreateReservationPort,
