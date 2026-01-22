@@ -20,3 +20,4 @@
 - [persistence_real_adapter_contract](persistence_real_adapter_contract.md)
 - [adapters/notification_adapters](adapters/notification_adapters.md)
 - [adapters/external_system_adapters](adapters/external_system_adapters.md)
+- [frontend_ui_skeleton](frontend_ui_skeleton.md)
