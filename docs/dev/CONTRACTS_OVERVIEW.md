@@ -75,6 +75,14 @@ If evidence is missing, status is marked UNKNOWN / NOT IMPLEMENTED YET.
 - Codex MAY change: adapter or handler implementation details that preserve port signatures.
 - Spec update REQUIRED before: changing any port or DTO fields.
 
+## Contract: Frontend UI skeleton
+- Purpose: define the minimal static UI skeleton (login and planning dashboard).
+- Spec: docs/specs/frontend_ui_skeleton.md
+- Implementation: ui/login.html, ui/dashboard.html, ui/styles.css, ui/README.md
+- Status: implemented (static).
+- Codex MAY change: layout and styling that remain within UX guidance and keep screens in scope.
+- Spec update REQUIRED before: adding new UI screens or introducing logic.
+
 ## Contract: Identity ports
 - Purpose: define inbound and outbound identity ports.
 - Spec: docs/specs/ports/identity_ports.md

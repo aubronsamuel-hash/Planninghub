@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PlanningHub - Planning Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">PlanningHub</div>
+        <nav class="nav" aria-label="Primary">
+          <a class="active" href="#">Dashboard</a>
+          <a href="#">Planning</a>
+          <a href="#">Resources</a>
+          <a href="#">Reservations</a>
+          <a href="#">Conflicts</a>
+        </nav>
+        <div class="meta">
+          Organization: Example Org
+        </div>
+      </aside>
+
+      <main class="content">
+        <header class="topbar">
+          <div>
+            <h1>Planning overview</h1>
+            <p class="meta">Week of 2026-02-02 (UTC)</p>
+          </div>
+          <div>
+            <button class="button secondary" type="button">Duplicate week</button>
+            <button class="button primary" type="button">Publish planning</button>
+          </div>
+        </header>
+
+        <section class="card-grid" aria-label="Key indicators">
+          <div class="card">
+            <h2>Active reservations</h2>
+            <div class="value">42</div>
+            <div class="meta">Across 5 resources</div>
+          </div>
+          <div class="card">
+            <h2>Conflicts</h2>
+            <div class="value">3</div>
+            <div class="meta">High severity</div>
+          </div>
+          <div class="card">
+            <h2>Memberships</h2>
+            <div class="value">18</div>
+            <div class="meta">Managers and members</div>
+          </div>
+          <div class="card">
+            <h2>Resources</h2>
+            <div class="value">24</div>
+            <div class="meta">Human and asset</div>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Planning grid">
+          <h2 class="section-title">Reservation schedule</h2>
+          <div class="planning-grid" data-port="time_reservation">
+            <div class="cell header"></div>
+            <div class="cell header">Mon</div>
+            <div class="cell header">Tue</div>
+            <div class="cell header">Wed</div>
+            <div class="cell header">Thu</div>
+            <div class="cell header">Fri</div>
+
+            <div class="cell header">Resource A</div>
+            <div class="cell">
+              <div class="shift">08:00-16:00 Reservation</div>
+            </div>
+            <div class="cell"></div>
+            <div class="cell">
+              <div class="shift">10:00-14:00 Reservation</div>
+            </div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+
+            <div class="cell header">Resource B</div>
+            <div class="cell"></div>
+            <div class="cell">
+              <div class="shift conflict">09:00-17:00 Conflict</div>
+            </div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell">
+              <div class="shift">12:00-20:00 Reservation</div>
+            </div>
+
+            <div class="cell header">Resource C</div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell">
+              <div class="shift">07:00-15:00 Reservation</div>
+            </div>
+            <div class="cell"></div>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Conflicts">
+          <h2 class="section-title">Conflict alerts</h2>
+          <div class="meta" data-port="conflict">
+            Reservation 1023 has a conflict with Reservation 1021 (severity: high).
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
