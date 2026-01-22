@@ -20,3 +20,8 @@ Owners: documentation governance
 
 ## Consequences
 - Phase status documentation and downstream plans depend on the resolved definition.
+
+## Update 2026-01-24
+- Conflict remains unresolved, which blocks identifying the current active phase and
+  any next allowed step until a decision is recorded.
+Ref: docs/roadmap/roadmap_v1.md#phase-4-api-and-http-framework-wiring-future
